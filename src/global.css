@@ -1,0 +1,11 @@
+/** @format */
+
+:root {
+  --text-color-primary: #fff;
+  --text-color-secondary: #455340;
+  --text-color-tertiary: #feffdf;
+
+  --background-color-primary: #344032;
+  --background-color-secondary: #d2eda8;
+  --background-color-tertiary: #fff;
+}
