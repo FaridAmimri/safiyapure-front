@@ -5,13 +5,17 @@ import IconButton from '@mui/material/IconButton'
 import Badge from '@mui/material/Badge'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import MuiButton from './MuiButton'
-import MenuBtn from '../assets/menubutton.jpg'
+import MenuBtn from '../images/menubutton.jpg'
 import { mobile, tablet } from '../responsive'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function Navbar() {
   const [expandNavbar, setExpandNavbar] = useState(false)
+
+  const handleMenu = () => {
+    setExpandNavbar(!expandNavbar)
+  }
 
   return (
     <Container>
@@ -45,23 +49,23 @@ function Navbar() {
         </Right>
 
         <MenuList expandNavbar={expandNavbar}>
-          <Link to='/' className='link'>
+          <Link to='/' className='link' onClick={handleMenu}>
             <MenuItem>Home</MenuItem>
           </Link>
-          <Link to='/products' className='link'>
+          <Link to='/products' className='link' onClick={handleMenu}>
             <MenuItem>Produits</MenuItem>
           </Link>
-          <Link to='/about' className='link'>
+          <Link to='/about' className='link' onClick={handleMenu}>
             <MenuItem>A Propos</MenuItem>
           </Link>
 
-          <Link to='/register' className='link'>
+          <Link to='/register' className='link' onClick={handleMenu}>
             <MuiButton text='Register' />
           </Link>
-          <Link to='/signin' className='link'>
+          <Link to='/signin' className='link' onClick={handleMenu}>
             <MuiButton text='Sign In' />
           </Link>
-          <Link to='/cart' className='link'>
+          <Link to='/cart' className='link' onClick={handleMenu}>
             <MenuItem className='link'>
               <Badge badgeContent={1} color='success'>
                 <ShoppingCartOutlinedIcon />
@@ -88,6 +92,8 @@ export default Navbar
 
 const Container = styled.div`
   background-color: var(--background-color-primary);
+  color: var(--text-color-primary);
+
   .link {
     text-decoration: none;
     ${mobile({ margin: '30px' })};
@@ -109,6 +115,7 @@ const Left = styled.div`
   flex: 1;
   justify-content: flex-start;
   font-size: 18px;
+  color: var(--text-color-tertiary);
 `
 
 const Center = styled.div`
@@ -129,6 +136,10 @@ const Right = styled.div`
   flex: 1;
   justify-content: flex-end;
 
+  button {
+    margin-left: 25px;
+  }
+
   ${mobile({ display: 'none' })};
   ${tablet({ display: 'none' })};
 `
@@ -136,6 +147,7 @@ const Right = styled.div`
 const MenuItem = styled.div`
   cursor: pointer;
   margin-left: 25px;
+  color: var(--text-color-primary);
 
   ${mobile({
     fontSize: '16px',
@@ -154,7 +166,7 @@ const MenuList = styled.ul`
   top: 53px;
   right: ${(props) => (props.expandNavbar ? '0px' : '-50vw')};
   width: 50vw;
-  background-color: #344032;
+  background-color: var(--background-color-primary);
   padding: 0;
   margin: 0;
   display: flex;
