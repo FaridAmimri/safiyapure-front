@@ -7,7 +7,6 @@ const ColorButton = styled(Button)(({ theme }) => ({
   backgroundColor: 'var(--background-color-secondary)',
   textTransform: 'none',
   color: 'var( --text-color-secondary)',
-  marginLeft: '25px',
   '&:hover': {
     backgroundColor: 'var(--background-color-tertiary)'
   }
