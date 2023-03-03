@@ -38,3 +38,30 @@ export const categorieItems = [
     category: 'Peau'
   }
 ]
+
+export const advicesItems = [
+  {
+    id: 1,
+    title: 'Pourquoi utiliser des huiles végétales naturelles ?',
+    content:
+      "Il est conseillé de ne pas appliquer une huile essentielle pure directement sur la peau, au risque de la brûler. L'huile essentielle est automatiquement ajoutée à un excipient. On choisit plutôt une huile végétale en application direct, par massage, en soin du visage, sur le corps, ou sur les cheveux."
+  },
+  {
+    id: 2,
+    title: 'Comment choisir son huile végétale ?',
+    content:
+      "Le choix va dépendre du type de soin souhaité. D'abord, il va falloir regarder les propriétés des différentes huiles végétales et sélectionner celle qui répond à vos besoins. Ensuite, il faudra étudier sa compatibilité au regard du problème rencontré (peau sèche, chute de cheveux, etc)."
+  },
+  {
+    id: 3,
+    title: 'Comment conserver ses huiles végétales pures ?',
+    content:
+      'Nos huiles végétales sont 100 % naturelles et conditionnées dans un flacon ambré pour mieux les protéger et conserver leurs propriétés. Sensibles à la lumière, à la chaleur et à l’air, elles devront être conservées à l’abri pour éviter toute oxydation.'
+  },
+  {
+    id: 4,
+    title: 'Que dois-je faire avant et après une utilisation ?',
+    content:
+      "Il est important de se laver les mains avant et après avoir utilisé une huile végétale. Penser également à bien refermer le flacon d'huile végétale."
+  }
+]
