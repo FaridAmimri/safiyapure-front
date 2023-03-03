@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import Intro from '../components/Intro'
 import Popular from '../components/Popular'
 import Categories from '../components/Categories'
+import Utilization from '../components/Utilization'
 
 function Home() {
   return (
@@ -12,6 +13,7 @@ function Home() {
       <Intro />
       <Popular />
       <Categories />
+      <Utilization />
     </div>
   )
 }
