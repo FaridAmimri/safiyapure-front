@@ -5,6 +5,7 @@ import Intro from '../components/Intro'
 import Popular from '../components/Popular'
 import Categories from '../components/Categories'
 import Utilization from '../components/Utilization'
+import Footer from '../components/Footer'
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
       <Popular />
       <Categories />
       <Utilization />
+      <Footer />
     </div>
   )
 }
