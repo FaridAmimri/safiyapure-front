@@ -65,3 +65,36 @@ export const advicesItems = [
       "Il est important de se laver les mains avant et après avoir utilisé une huile végétale. Penser également à bien refermer le flacon d'huile végétale."
   }
 ]
+
+export const productItems = [
+  {
+    id: 1,
+    image: 'assets/products/product1.jpg',
+    description: "Huile d'Amande douce",
+    category: 'Peau'
+  },
+  {
+    id: 2,
+    image: 'assets/products/product2.jpg',
+    description: 'Huile de Nigelle',
+    category: 'Peau'
+  },
+  {
+    id: 3,
+    image: 'assets/products/product3.jpg',
+    description: 'Huile de Ricin',
+    category: 'Cheveux'
+  },
+  {
+    id: 4,
+    image: 'assets/products/product4.jpg',
+    description: "Huile d'Aloe vera",
+    category: 'Peau'
+  },
+  {
+    id: 5,
+    image: 'assets/products/product5.jpg',
+    description: "Huile d'Argan",
+    category: 'Visage'
+  }
+]
