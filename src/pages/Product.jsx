@@ -69,7 +69,7 @@ const Container = styled.div``
 const Wrapper = styled.div`
   display: flex;
   padding: 50px;
-  height: 500px;
+  height: 450px;
 `
 
 const ProductContainer = styled.div`

@@ -3,6 +3,7 @@
 import styled from 'styled-components'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { useState } from 'react'
+import { mobile, tablet } from '../responsive'
 
 function Dropdown({ title, children }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -32,6 +33,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 20px;
+
+  ${mobile({
+    width: '100%'
+  })}
 `
 
 const Top = styled.div`
@@ -66,4 +71,8 @@ const Content = styled.div`
       transform: translateY(3px);
     }
   }
+
+  ${mobile({
+    marginTop: 30
+  })}
 `

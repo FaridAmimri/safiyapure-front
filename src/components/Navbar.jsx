@@ -6,9 +6,9 @@ import Badge from '@mui/material/Badge'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import MuiButton from './MuiButton'
 import MenuBtn from '../images/menubutton.jpg'
-import { mobile, tablet } from '../responsive'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { mobile, tablet } from '../responsive'
 
 function Navbar() {
   const [expandNavbar, setExpandNavbar] = useState(false)
@@ -16,7 +16,7 @@ function Navbar() {
   const handleMenu = () => {
     setExpandNavbar(!expandNavbar)
   }
-
+  console.log(expandNavbar)
   return (
     <Container>
       <Wrapper>
@@ -34,10 +34,10 @@ function Navbar() {
         </Center>
         <Right expandNavbar={expandNavbar}>
           <Link to='/register' className='link'>
-            <MuiButton text='Register' />
+            <MuiButton text="S'enregistrer" />
           </Link>
-          <Link to='/signin' className='link'>
-            <MuiButton text='Sign In' />
+          <Link to='/login' className='link'>
+            <MuiButton text='Se connecter' />
           </Link>
           <Link to='/cart' className='link'>
             <MenuItem className='link'>
@@ -47,7 +47,6 @@ function Navbar() {
             </MenuItem>
           </Link>
         </Right>
-
         <MenuList expandNavbar={expandNavbar}>
           <Link to='/' className='link' onClick={handleMenu}>
             <MenuItem>Home</MenuItem>
@@ -91,13 +90,15 @@ function Navbar() {
 export default Navbar
 
 const Container = styled.div`
-  background-color: var(--background-color-primary);
+  background-color: var(--text-color-secondary);
   color: var(--text-color-primary);
+  position: fixed;
+  width: 100%;
+  z-index: 999;
 
   .link {
     text-decoration: none;
-    ${mobile({ margin: '30px' })};
-    ${tablet({ margin: '30px' })};
+    ${mobile({ textAlign: 'center' })};
   }
 `
 
@@ -166,13 +167,15 @@ const MenuList = styled.ul`
   top: 53px;
   right: ${(props) => (props.expandNavbar ? '0px' : '-50vw')};
   width: 50vw;
-  background-color: var(--background-color-primary);
+  background-color: var(--text-color-secondary);
   padding: 0;
   margin: 0;
-  display: flex;
   flex-direction: column;
   align-items: center;
   transition: all 1s ease;
+  display: flex;
+  justify-content: space-around;
+  z-index: 999;
 `
 
 const MenuButton = styled.div`

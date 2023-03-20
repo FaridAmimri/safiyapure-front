@@ -3,6 +3,7 @@
 import styled from 'styled-components'
 import Dropdown from './Dropdown'
 import { advicesItems } from '../data'
+import { mobile, tablet } from '../responsive'
 
 function Utilization() {
   return (
@@ -41,24 +42,39 @@ const Container = styled.div`
 const Top = styled.div`
   background-color: var(--background-color-primary);
   display: flex;
+
+  ${mobile({
+    flexDirection: 'column'
+  })}
 `
 
 const Left = styled.div`
   flex: 1;
-  padding: 30px;
+  padding: 40px;
 `
 
 const Title = styled.h5`
+  width: 90%;
   color: var(--text-color-tertiary);
   font-size: 50px;
   font-weight: 400;
   line-height: 79px;
-  width: 90%;
+  padding-left: 20px;
+
+  ${mobile({
+    fontSize: 28,
+    lineHeight: '34px',
+    padding: 0
+  })}
 `
 
 const Right = styled.div`
   flex: 1;
   padding: 40px;
+
+  ${mobile({
+    paddingTop: 0
+  })}
 `
 
 const Description = styled.span`
@@ -66,6 +82,11 @@ const Description = styled.span`
   font-weight: 400;
   font-size: 20px;
   line-height: 32px;
+
+  ${mobile({
+    fontSize: 16,
+    lineHeight: '25px'
+  })}
 `
 
 const Bottom = styled.div`

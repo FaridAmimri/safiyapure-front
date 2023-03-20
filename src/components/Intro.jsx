@@ -8,6 +8,7 @@ import EastIcon from '@mui/icons-material/East'
 import ElementIcon from '../images/element.png'
 import { sliderItems } from '../data'
 import { useState } from 'react'
+import { mobile, tablet } from '../responsive'
 
 function Intro() {
   const slideListLength = sliderItems.length
@@ -88,11 +89,20 @@ const Top = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 80px;
+
+  ${mobile({
+    padding: 40,
+    flexDirection: 'column'
+  })};
 `
 
 const ImageContainer = styled.div`
   width: 67px;
   height: 67px;
+
+  ${mobile({
+    display: 'none'
+  })}
 `
 
 const TitleContainer = styled.div`
@@ -105,10 +115,13 @@ const Title = styled.span`
   width: 70%;
   color: var(--text-color-tertiary);
   font-size: 50px;
-  font-style: normal;
   font-weight: 400;
-  line-height: 89px;
   text-align: center;
+
+  ${mobile({
+    fontSize: 36,
+    width: '100%'
+  })};
 `
 
 const Bottom = styled.div`
@@ -116,6 +129,11 @@ const Bottom = styled.div`
   align-items: center;
   padding: 0px 0px 80px 80px;
   overflow: hidden;
+
+  ${mobile({
+    flexDirection: 'column-reverse',
+    padding: 0
+  })};
 `
 
 const ContainerArrow = styled.div`
@@ -130,6 +148,13 @@ const ContainerArrow = styled.div`
   .arrow {
     color: black;
   }
+
+  ${mobile({
+    flexDirection: 'row',
+    width: 'auto',
+    margin: 0,
+    alignItems: 'flex-end'
+  })}
 `
 
 const LeftArrow = styled.div`
@@ -138,6 +163,10 @@ const LeftArrow = styled.div`
   height: 42px;
   border-radius: 50%;
   color: var(--background-color-secondary);
+
+  ${mobile({
+    marginRight: 20
+  })}
 `
 
 const RightArrow = styled.div`
@@ -158,12 +187,14 @@ const Slide = styled.div`
   position: relative;
   width: 550px;
   height: 430px;
-  display: flex;
-  justify-content: center;
-  background: var(--background-color-tertiary);
   border-radius: 35px;
   margin-left: 40px;
   overflow: hidden;
+
+  ${mobile({
+    width: 230,
+    height: 170
+  })}
 `
 
 const Image = styled.img`
@@ -187,12 +218,22 @@ const Sticker = styled.div`
   padding-left: 20px;
   z-index: 10;
   cursor: pointer;
+
+  ${mobile({
+    width: 150,
+    height: 50,
+    top: 100
+  })}
 `
 
 const Product = styled.p`
   font-weight: 600;
   font-size: 18px;
   margin: 5px 0;
+
+  ${mobile({
+    fontSize: 12
+  })}
 `
 
 const Price = styled.span`
@@ -204,4 +245,8 @@ const Price = styled.span`
   svg {
     padding-left: 20px;
   }
+
+  ${mobile({
+    fontSize: 18
+  })}
 `

@@ -8,6 +8,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { categorieItems } from '../data'
 import CategoryItem from './CategoryItem'
 import { useState } from 'react'
+import { mobile, tablet } from '../responsive'
 
 function Categories() {
   const slideListLength = categorieItems.length
@@ -29,7 +30,8 @@ function Categories() {
     <Container>
       <Top>
         <Left>
-          <AnimationContainer style={{ width: '90px', height: '90px' }}>
+          <TitleCarousel>Des solutions pour tous</TitleCarousel>
+          <AnimationContainer>
             <Image src={ElementIcon} alt='icône étoile' />
           </AnimationContainer>
           <Carousel currentSlide={currentSlide}>
@@ -67,7 +69,7 @@ function Categories() {
       </Top>
 
       <Bottom>
-        <AnimationContainer style={{ width: '79px', height: '79px' }}>
+        <AnimationContainer>
           <Image src={ElementIcon} alt='icône étoile' />
         </AnimationContainer>
       </Bottom>
@@ -86,6 +88,11 @@ const Container = styled.div`
 `
 const Top = styled.div`
   display: flex;
+
+  ${mobile({
+    flexDirection: 'column',
+    marginTop: '50px'
+  })}
 `
 
 const Left = styled.div`
@@ -98,7 +105,27 @@ const Left = styled.div`
   overflow: hidden;
 `
 
-const AnimationContainer = styled.div``
+const TitleCarousel = styled.h2`
+  color: var(--text-color-tertiary);
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 30px;
+  display: none;
+
+  ${mobile({
+    display: 'flex'
+  })}
+`
+
+const AnimationContainer = styled.div`
+  width: 79px;
+  height: 79px;
+
+  ${mobile({
+    width: 59,
+    height: 59
+  })}
+`
 
 const Image = styled.img`
   height: 100%;
@@ -110,8 +137,12 @@ const Carousel = styled.div`
   margin: 40px 0;
   align-items: flex-end;
   overflow: hidden;
-  transform: translateX(${(props) => props.currentSlide * 20}vw);
+  transform: translateX(${(props) => props.currentSlide * 100}vw);
   transition: all 1.5s ease-in-out;
+
+  ${mobile({
+    margin: 0
+  })}
 
   #Cheveux {
     height: 314px;
@@ -134,6 +165,11 @@ const Right = styled.div`
 const Wrapper = styled.div`
   padding: 40px;
   position: relative;
+
+  ${mobile({
+    display: 'flex',
+    justifyContent: 'center'
+  })}
 `
 
 const Title = styled.h2`
@@ -141,6 +177,10 @@ const Title = styled.h2`
   font-size: 45px;
   font-weight: 400;
   margin-bottom: 60px;
+
+  ${mobile({
+    display: 'none'
+  })}
 `
 
 const ArrowContainer = styled.div`

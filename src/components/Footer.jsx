@@ -6,6 +6,7 @@ import InstagramIcon from '@mui/icons-material/Instagram'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import PhoneIcon from '@mui/icons-material/Phone'
 import MailIcon from '@mui/icons-material/Mail'
+import { mobile, tablet } from '../responsive'
 
 function Footer() {
   return (
@@ -34,17 +35,21 @@ function Footer() {
             </SocialIcon>
           </SocialContainer>
         </Left>
+
         <Center>
-          <Title>Liens Utiles</Title>
-          <List>
-            <ListItem>Home</ListItem>
-            <ListItem>Hair</ListItem>
-            <ListItem>Face</ListItem>
-            <ListItem>Body</ListItem>
-            <ListItem>My Account</ListItem>
-            <ListItem>Terms</ListItem>
-          </List>
+          <Wrapper>
+            <Title>Liens Utiles</Title>
+            <List>
+              <ListItem>Home</ListItem>
+              <ListItem>Hair</ListItem>
+              <ListItem>Face</ListItem>
+              <ListItem>Body</ListItem>
+              <ListItem>My Account</ListItem>
+              <ListItem>Terms</ListItem>
+            </List>
+          </Wrapper>
         </Center>
+
         <Right>
           <Title>Contact</Title>
           <ContactItem>
@@ -64,7 +69,7 @@ function Footer() {
       </Top>
 
       <Bottom>
-        <Copyright>©2017 SafiyaPure. All rights reserved</Copyright>
+        <Copyright>©2017 SafiyaPure. Tous droits réservés</Copyright>
       </Bottom>
     </Container>
   )
@@ -81,6 +86,10 @@ const Container = styled.div`
 const Top = styled.div`
   display: flex;
   margin: 20px 0;
+
+  ${mobile({
+    flexDirection: 'column'
+  })}
 `
 
 const Left = styled.div`
@@ -121,6 +130,17 @@ const SocialIcon = styled.div`
 const Center = styled.div`
   flex: 1;
   padding: 20px;
+`
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 90px;
+
+  ${mobile({
+    padding: 0
+  })}
 `
 
 const Title = styled.h3`
