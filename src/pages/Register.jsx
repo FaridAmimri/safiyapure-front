@@ -1,7 +1,5 @@
 /** @format */
 
-/** @format */
-
 import styled from 'styled-components'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -11,6 +9,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
 import Button from '@mui/material/Button'
 import PersonIcon from '@mui/icons-material/Person'
+import { mobile, tablet } from '../responsive'
 
 function Register() {
   return (
@@ -70,7 +69,11 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px;
+  padding: 100px 80px 80px 80px;
+
+  ${mobile({
+    height: '80vh'
+  })}
 `
 
 const FormContainer = styled.div`
@@ -78,6 +81,10 @@ const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    ${mobile({
+      gap: 40
+    })}
   }
   .input {
     width: 300px;
@@ -85,6 +92,11 @@ const FormContainer = styled.div`
   .agreementContainer {
     display: flex;
     flex-direction: column;
+
+    ${mobile({
+      alignItems: 'center',
+      gap: 20
+    })}
   }
   .agreement {
     font-size: 12px;
@@ -105,4 +117,8 @@ const Title = styled.h1`
   font-weight: 500;
   margin-bottom: 20px;
   color: #2e7d32;
+
+  ${mobile({
+    textAlign: 'center'
+  })}
 `

@@ -137,7 +137,7 @@ const Carousel = styled.div`
   margin: 40px 0;
   align-items: flex-end;
   overflow: hidden;
-  transform: translateX(${(props) => props.currentSlide * 100}vw);
+  transform: translateX(${(props) => props.currentSlide * 20}vw);
   transition: all 1.5s ease-in-out;
 
   ${mobile({

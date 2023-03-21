@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import Button from '@mui/material/Button'
 import OilJpg from '../images/product1.jpg'
 import { Remove, Add } from '@mui/icons-material'
+import { mobile, tablet } from '../responsive'
 
 function Cart() {
   return (
@@ -14,14 +15,24 @@ function Cart() {
       <Wrapper>
         <Title>VOTRE PANIER</Title>
         <Top>
-          <Button variant='outlined' size='small' color='success'>
+          <Button
+            variant='outlined'
+            size='small'
+            color='success'
+            sx={{ width: '150px' }}
+          >
             RETOUR
           </Button>
           <Texts>
             <Text>Panier d'Achat (2)</Text>
             <Text>List de souhaits (0)</Text>
           </Texts>
-          <Button variant='outlined' size='small' color='success'>
+          <Button
+            variant='outlined'
+            size='small'
+            color='success'
+            sx={{ width: '150px' }}
+          >
             CONTINUER
           </Button>
         </Top>
@@ -69,7 +80,7 @@ function Cart() {
               <SummaryContent>Remise</SummaryContent>
               <SummaryPrice>-6.90 €</SummaryPrice>
             </SummaryItem>
-            <SummaryItem>
+            <SummaryItem className='total'>
               <SummaryContent>Total</SummaryContent>
               <SummaryPrice>13 €</SummaryPrice>
             </SummaryItem>
@@ -91,13 +102,21 @@ export default Cart
 const Container = styled.div``
 
 const Wrapper = styled.div`
-  padding: 20px;
+  padding: 80px 20px 20px 20px;
+
+  ${mobile({
+    paddingTop: 80
+  })}
 `
 
 const Title = styled.h1`
   font-weight: 300;
   text-align: center;
   color: var(--text-color-secondary);
+
+  ${mobile({
+    marginBottom: 10
+  })}
 `
 
 const Top = styled.div`
@@ -111,6 +130,10 @@ const Texts = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  ${mobile({
+    visibility: 'hidden'
+  })}
 `
 
 const Text = styled.span`
@@ -122,6 +145,10 @@ const Text = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
+
+  ${mobile({
+    flexDirection: 'column'
+  })}
 `
 
 const Product = styled.div`
@@ -130,6 +157,10 @@ const Product = styled.div`
 
 const Item = styled.div`
   display: flex;
+
+  ${mobile({
+    flexDirection: 'column'
+  })}
 `
 
 const ProductDetail = styled.div`
@@ -164,6 +195,11 @@ const PriceDetail = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  ${mobile({
+    alignItems: 'center',
+    marginBottom: 30
+  })}
 `
 const AmountContainer = styled.div`
   display: flex;
@@ -192,6 +228,11 @@ const Summary = styled.div`
   border-radius: 10px;
   padding: 20px;
   height: 60vh;
+
+  .total {
+    font-size: 24px;
+    font-weight: 500;
+  }
 `
 const SummaryTitle = styled.h2`
   font-weight: 300;

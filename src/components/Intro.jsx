@@ -88,10 +88,10 @@ const Container = styled.div`
 const Top = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 80px;
+  padding: 100px 80px 80px 80px;
 
   ${mobile({
-    padding: 40,
+    padding: '80px 40px 40px 40px',
     flexDirection: 'column'
   })};
 `

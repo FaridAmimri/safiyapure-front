@@ -7,6 +7,7 @@ import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import LockIcon from '@mui/icons-material/Lock'
+import { mobile, tablet } from '../responsive'
 
 function Login() {
   return (
@@ -54,13 +55,23 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding: 100px;
+
+  ${mobile({
+    height: '100vh',
+    padding: 0
+  })}
 `
 
 const FormContainer = styled.div`
   .form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
+
+    ${mobile({
+      alignItems: 'center',
+      gap: 40
+    })}
   }
   .input {
     width: 300px;
@@ -75,4 +86,8 @@ const Title = styled.h1`
   font-weight: 500;
   margin-bottom: 20px;
   color: #2e7d32;
+
+  ${mobile({
+    textAlign: 'center'
+  })}
 `

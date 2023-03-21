@@ -41,11 +41,11 @@ function Footer() {
             <Title>Liens Utiles</Title>
             <List>
               <ListItem>Home</ListItem>
-              <ListItem>Hair</ListItem>
-              <ListItem>Face</ListItem>
-              <ListItem>Body</ListItem>
-              <ListItem>My Account</ListItem>
-              <ListItem>Terms</ListItem>
+              <ListItem>Hair Care</ListItem>
+              <ListItem>Face Care</ListItem>
+              <ListItem>Body Care</ListItem>
+              <ListItem>Mon Compte</ListItem>
+              <ListItem>Conditions</ListItem>
             </List>
           </Wrapper>
         </Center>

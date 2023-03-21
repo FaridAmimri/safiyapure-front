@@ -59,10 +59,10 @@ function Navbar() {
           </Link>
 
           <Link to='/register' className='link' onClick={handleMenu}>
-            <MuiButton text='Register' />
+            <MuiButton text="S'enregistrer" />
           </Link>
-          <Link to='/signin' className='link' onClick={handleMenu}>
-            <MuiButton text='Sign In' />
+          <Link to='/login' className='link' onClick={handleMenu}>
+            <MuiButton text='Se connecter' />
           </Link>
           <Link to='/cart' className='link' onClick={handleMenu}>
             <MenuItem className='link'>
@@ -93,6 +93,7 @@ const Container = styled.div`
   background-color: var(--text-color-secondary);
   color: var(--text-color-primary);
   position: fixed;
+  top: 0;
   width: 100%;
   z-index: 999;
 

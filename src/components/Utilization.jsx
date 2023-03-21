@@ -17,7 +17,7 @@ function Utilization() {
             Avec une composition riche en lipides, les huiles végétales aident à
             régénérer et réparer les peaux sèches et atopiques. Ces dernières
             sont connues pour leur effet surgraissant qui va permettre d'adoucir
-            de la peau, de la nourrir et de l'hydrater en profondeur.
+            la peau, de la nourrir et de l'hydrater en profondeur.
           </Description>
         </Right>
       </Top>

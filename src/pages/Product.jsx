@@ -9,56 +9,59 @@ import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import Button from '@mui/material/Button'
 import { Remove, Add } from '@mui/icons-material'
+import { mobile, tablet } from '../responsive'
 
 function Product() {
   return (
-    <Container>
+    <>
       <Navbar />
-      <Wrapper>
-        <ProductContainer>
-          <Image src={OilJpg} alt='huile cosmétique' />
-        </ProductContainer>
-        <DetailsContainer>
-          <Title>Huile d'Aloe Vera</Title>
-          <Description>
-            L'huile d'Aloe Vera redonne de la brillance à vos cheveux. Très
-            hydratante et nourrissante elle est particulièrement recommandée
-            pour les cheveux secs et très secs. Elle peut être utilisée au
-            quotidien pour hydrater, nourrir et redonner de l'éclat à tous types
-            de peaux ainsi que pour lutter efficacement contre le vieillissement
-            cutané en stimulant la production de collagène.
-          </Description>
-          <Price>4,70 €</Price>
-          <FilterContainer>
-            <FilterWrapper>
-              <FilterTitle>Conditionnement</FilterTitle>
-              <FormControl sx={{ margin: 1 }} size='small'>
-                <Select
-                  color='success'
-                  labelId='conditioning'
-                  id='conditioning'
-                  value='30 ml'
-                >
-                  <MenuItem value='30 ml'>30 ml</MenuItem>
-                </Select>
-              </FormControl>
-            </FilterWrapper>
-          </FilterContainer>
-          <QuantityContainer>
-            <FilterTitle>Quantité</FilterTitle>
-            <Remove />
-            <Amount>1</Amount>
-            <Add />
-          </QuantityContainer>
-          <ButtonContainer>
-            <Button variant='contained' color='success'>
-              Ajouter au panier
-            </Button>
-          </ButtonContainer>
-        </DetailsContainer>
-      </Wrapper>
+      <Container>
+        <Wrapper>
+          <ProductContainer>
+            <Image src={OilJpg} alt='huile cosmétique' />
+          </ProductContainer>
+          <DetailsContainer>
+            <Title>Huile d'Aloe Vera</Title>
+            <Description>
+              L'huile d'Aloe Vera redonne de la brillance à vos cheveux. Très
+              hydratante et nourrissante elle est particulièrement recommandée
+              pour les cheveux secs et très secs. Elle peut être utilisée au
+              quotidien pour hydrater, nourrir et redonner de l'éclat à tous
+              types de peaux ainsi que pour lutter efficacement contre le
+              vieillissement cutané en stimulant la production de collagène.
+            </Description>
+            <Price>4,70 €</Price>
+            <FilterContainer>
+              <FilterWrapper>
+                <FilterTitle>Conditionnement</FilterTitle>
+                <FormControl sx={{ margin: 1 }} size='small'>
+                  <Select
+                    color='success'
+                    labelId='conditioning'
+                    id='conditioning'
+                    value='30 ml'
+                  >
+                    <MenuItem value='30 ml'>30 ml</MenuItem>
+                  </Select>
+                </FormControl>
+              </FilterWrapper>
+            </FilterContainer>
+            <QuantityContainer>
+              <FilterTitle>Quantité</FilterTitle>
+              <Remove />
+              <Amount>1</Amount>
+              <Add />
+            </QuantityContainer>
+            <ButtonContainer>
+              <Button variant='contained' color='success'>
+                Ajouter au panier
+              </Button>
+            </ButtonContainer>
+          </DetailsContainer>
+        </Wrapper>
+      </Container>
       <Footer />
-    </Container>
+    </>
   )
 }
 
@@ -68,19 +71,35 @@ const Container = styled.div``
 
 const Wrapper = styled.div`
   display: flex;
-  padding: 50px;
+  padding: 100px 50px 50px 50px;
   height: 450px;
+
+  ${mobile({
+    height: 930,
+    flexDirection: 'column',
+    padding: '100px 40px 40px 40px'
+  })}
 `
 
 const ProductContainer = styled.div`
   flex: 1;
   position: relative;
   overflow: hidden;
+
+  ${mobile({
+    display: 'flex',
+    alignItems: 'center'
+  })}
 `
 
 const Image = styled.img`
   position: absolute;
   top: -100px;
+
+  ${mobile({
+    top: -128,
+    left: -30
+  })}
 `
 
 const DetailsContainer = styled.div`
@@ -93,9 +112,17 @@ const DetailsContainer = styled.div`
 const Title = styled.h1`
   font-weight: 400;
   color: var(--text-color-secondary);
+
+  ${mobile({
+    marginBottom: 20
+  })}
 `
 
-const Description = styled.p``
+const Description = styled.p`
+  ${mobile({
+    marginBottom: 20
+  })}
+`
 
 const Price = styled.span`
   font-weight: 300;
@@ -105,6 +132,10 @@ const Price = styled.span`
 
 const FilterContainer = styled.div`
   display: flex;
+
+  ${mobile({
+    marginBottom: 20
+  })}
 `
 
 const FilterWrapper = styled.div`
@@ -126,6 +157,10 @@ const QuantityContainer = styled.div`
   svg {
     color: var(--text-color-secondary);
   }
+
+  ${mobile({
+    marginBottom: 30
+  })}
 `
 
 const Amount = styled.div`
