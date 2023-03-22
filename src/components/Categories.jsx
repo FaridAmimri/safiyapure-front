@@ -93,6 +93,11 @@ const Top = styled.div`
     flexDirection: 'column',
     marginTop: '50px'
   })}
+
+  ${tablet({
+    flexDirection: 'column',
+    marginTop: '50px'
+  })}
 `
 
 const Left = styled.div`
@@ -114,6 +119,11 @@ const TitleCarousel = styled.h2`
 
   ${mobile({
     display: 'flex'
+  })}
+
+  ${tablet({
+    display: 'flex',
+    fontSize: 35
   })}
 `
 
@@ -144,6 +154,10 @@ const Carousel = styled.div`
     margin: 0
   })}
 
+  ${tablet({
+    margin: 0
+  })}
+
   #Cheveux {
     height: 314px;
   }
@@ -170,6 +184,11 @@ const Wrapper = styled.div`
     display: 'flex',
     justifyContent: 'center'
   })}
+
+  ${tablet({
+    display: 'flex',
+    justifyContent: 'center'
+  })}
 `
 
 const Title = styled.h2`
@@ -179,6 +198,10 @@ const Title = styled.h2`
   margin-bottom: 60px;
 
   ${mobile({
+    display: 'none'
+  })}
+
+  ${tablet({
     display: 'none'
   })}
 `

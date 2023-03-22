@@ -66,6 +66,10 @@ const Title = styled.h1`
   ${mobile({
     fontSize: 24
   })}
+
+  ${tablet({
+    fontSize: 23
+  })}
 `
 
 const FilterContainer = styled.div``

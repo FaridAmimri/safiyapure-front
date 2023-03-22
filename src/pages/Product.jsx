@@ -79,6 +79,12 @@ const Wrapper = styled.div`
     flexDirection: 'column',
     padding: '100px 40px 40px 40px'
   })}
+
+  ${tablet({
+    height: 930,
+    flexDirection: 'column',
+    padding: '100px 40px 40px 40px'
+  })}
 `
 
 const ProductContainer = styled.div`
@@ -88,7 +94,12 @@ const ProductContainer = styled.div`
 
   ${mobile({
     display: 'flex',
-    alignItems: 'center'
+    justifyContent: 'center'
+  })}
+
+  ${tablet({
+    display: 'flex',
+    justifyContent: 'center'
   })}
 `
 
@@ -97,8 +108,11 @@ const Image = styled.img`
   top: -100px;
 
   ${mobile({
-    top: -128,
-    left: -30
+    top: -130
+  })}
+
+  ${tablet({
+    top: -135
   })}
 `
 

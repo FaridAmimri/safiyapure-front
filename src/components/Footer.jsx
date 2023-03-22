@@ -90,6 +90,10 @@ const Top = styled.div`
   ${mobile({
     flexDirection: 'column'
   })}
+
+  ${tablet({
+    flexDirection: 'column'
+  })}
 `
 
 const Left = styled.div`
@@ -105,10 +109,18 @@ const Description = styled.p`
   margin-bottom: 20px;
   line-height: 1.5em;
   color: var(--text-color-primary);
+
+  ${tablet({
+    textAlign: 'center'
+  })}
 `
 
 const SocialContainer = styled.div`
   display: flex;
+
+  ${tablet({
+    justifyContent: 'center'
+  })}
 `
 
 const SocialIcon = styled.div`
@@ -141,6 +153,11 @@ const Wrapper = styled.div`
   ${mobile({
     padding: 0
   })}
+
+  ${tablet({
+    padding: 0,
+    alignItems: 'center'
+  })}
 `
 
 const Title = styled.h3`
@@ -148,6 +165,10 @@ const Title = styled.h3`
   font-size: 18px;
   margin-bottom: 20px;
   color: var(--background-color-secondary);
+
+  ${tablet({
+    textAlign: 'center'
+  })}
 `
 
 const List = styled.ul`
@@ -164,11 +185,22 @@ const List = styled.ul`
 const ListItem = styled.li`
   width: 50%;
   margin-bottom: 10px;
+
+  ${tablet({
+    display: 'flex',
+    justifyContent: 'center'
+  })}
 `
 
 const Right = styled.div`
   flex: 1;
   padding: 20px;
+
+  ${tablet({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  })}
 `
 
 const ContactItem = styled.div`
@@ -186,6 +218,10 @@ const ContactItem = styled.div`
 
 const Payment = styled.img`
   width: 50%;
+
+  ${tablet({
+    width: '30%'
+  })}
 `
 
 const Bottom = styled.div`

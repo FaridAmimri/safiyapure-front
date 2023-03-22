@@ -134,6 +134,10 @@ const Texts = styled.div`
   ${mobile({
     visibility: 'hidden'
   })}
+
+  ${tablet({
+    visibility: 'hidden'
+  })}
 `
 
 const Text = styled.span`
@@ -149,6 +153,10 @@ const Bottom = styled.div`
   ${mobile({
     flexDirection: 'column'
   })}
+
+  ${tablet({
+    flexDirection: 'column'
+  })}
 `
 
 const Product = styled.div`
@@ -161,11 +169,19 @@ const Item = styled.div`
   ${mobile({
     flexDirection: 'column'
   })}
+
+  ${tablet({
+    flexDirection: 'column'
+  })}
 `
 
 const ProductDetail = styled.div`
   flex: 2;
   display: flex;
+
+  ${tablet({
+    justifyContent: 'center'
+  })}
 `
 
 const Image = styled.img`
@@ -197,6 +213,11 @@ const PriceDetail = styled.div`
   justify-content: center;
 
   ${mobile({
+    alignItems: 'center',
+    marginBottom: 30
+  })}
+
+  ${tablet({
     alignItems: 'center',
     marginBottom: 30
   })}

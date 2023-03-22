@@ -60,6 +60,10 @@ const Container = styled.div`
     height: '100vh',
     padding: 0
   })}
+
+  ${tablet({
+    paddingTop: 140
+  })}
 `
 
 const FormContainer = styled.div`

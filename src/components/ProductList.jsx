@@ -27,4 +27,10 @@ const Container = styled.div`
     alignContent: 'center',
     padding: 0
   })}
+
+  ${tablet({
+    flexDirection: 'column',
+    alignContent: 'center',
+    padding: 0
+  })}
 `

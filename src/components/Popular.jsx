@@ -44,6 +44,10 @@ const Container = styled.div`
   ${mobile({
     flexDirection: 'column'
   })}
+
+  ${tablet({
+    flexDirection: 'column'
+  })}
 `
 
 const Left = styled.div`
@@ -56,6 +60,10 @@ const Left = styled.div`
   ${mobile({
     padding: '50px 30px 0 20px'
   })}
+
+  ${tablet({
+    padding: '50px 50px 0 50px'
+  })}
 `
 
 const Title = styled.h5`
@@ -65,6 +73,10 @@ const Title = styled.h5`
 
   ${mobile({
     fontSize: 28
+  })}
+
+  ${tablet({
+    fontSize: 38
   })}
 `
 
@@ -76,6 +88,10 @@ const Description = styled.p`
 
   ${mobile({
     fontSize: 16
+  })}
+
+  ${tablet({
+    fontSize: 18
   })}
 `
 
@@ -97,6 +113,10 @@ const IconContainer = styled.div`
   ${mobile({
     display: 'flex'
   })}
+
+  ${tablet({
+    display: 'flex'
+  })}
 `
 
 const Right = styled.div`
@@ -106,6 +126,11 @@ const Right = styled.div`
   ${mobile({
     padding: '50px 20px 0 20px'
   })}
+  ${tablet({
+    padding: 50,
+    display: 'flex',
+    justifyContent: 'center'
+  })};
 `
 
 const ImageContainer = styled.div`

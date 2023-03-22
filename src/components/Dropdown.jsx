@@ -37,6 +37,10 @@ const Container = styled.div`
   ${mobile({
     width: '100%'
   })}
+
+  ${tablet({
+    width: '100%'
+  })}
 `
 
 const Top = styled.div`
@@ -74,5 +78,9 @@ const Content = styled.div`
 
   ${mobile({
     marginTop: 30
+  })}
+
+  ${tablet({
+    marginTop: 10
   })}
 `

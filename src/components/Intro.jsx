@@ -93,7 +93,12 @@ const Top = styled.div`
   ${mobile({
     padding: '80px 40px 40px 40px',
     flexDirection: 'column'
-  })};
+  })}
+
+  ${tablet({
+    padding: '90px 40px 40px 40px',
+    flexDirection: 'column'
+  })}
 `
 
 const ImageContainer = styled.div`
@@ -101,6 +106,10 @@ const ImageContainer = styled.div`
   height: 67px;
 
   ${mobile({
+    display: 'none'
+  })}
+
+  ${tablet({
     display: 'none'
   })}
 `
@@ -121,6 +130,11 @@ const Title = styled.span`
   ${mobile({
     fontSize: 36,
     width: '100%'
+  })}
+
+  ${tablet({
+    fontSize: 40,
+    width: '100%'
   })};
 `
 
@@ -133,7 +147,12 @@ const Bottom = styled.div`
   ${mobile({
     flexDirection: 'column-reverse',
     padding: 0
-  })};
+  })}
+
+  ${tablet({
+    flexDirection: 'column-reverse',
+    padding: 0
+  })}
 `
 
 const ContainerArrow = styled.div`
@@ -155,6 +174,11 @@ const ContainerArrow = styled.div`
     margin: 0,
     alignItems: 'flex-end'
   })}
+
+  ${tablet({
+    flexDirection: 'row',
+    alignItems: 'flex-end'
+  })}
 `
 
 const LeftArrow = styled.div`
@@ -166,6 +190,10 @@ const LeftArrow = styled.div`
 
   ${mobile({
     marginRight: 20
+  })}
+
+  ${tablet({
+    marginRight: 30
   })}
 `
 
@@ -194,6 +222,11 @@ const Slide = styled.div`
   ${mobile({
     width: 230,
     height: 170
+  })}
+
+  ${tablet({
+    width: 330,
+    height: 270
   })}
 `
 
@@ -224,6 +257,12 @@ const Sticker = styled.div`
     height: 50,
     top: 100
   })}
+
+  ${tablet({
+    width: 180,
+    height: 60,
+    top: 180
+  })}
 `
 
 const Product = styled.p`
@@ -233,6 +272,10 @@ const Product = styled.p`
 
   ${mobile({
     fontSize: 12
+  })}
+
+  ${tablet({
+    fontSize: 14
   })}
 `
 
@@ -248,5 +291,9 @@ const Price = styled.span`
 
   ${mobile({
     fontSize: 18
+  })}
+
+  ${tablet({
+    fontSize: 22
   })}
 `

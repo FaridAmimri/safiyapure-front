@@ -16,7 +16,7 @@ function Navbar() {
   const handleMenu = () => {
     setExpandNavbar(!expandNavbar)
   }
-  console.log(expandNavbar)
+
   return (
     <Container>
       <Wrapper>

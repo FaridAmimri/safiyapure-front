@@ -46,6 +46,10 @@ const Top = styled.div`
   ${mobile({
     flexDirection: 'column'
   })}
+
+  ${tablet({
+    flexDirection: 'column'
+  })}
 `
 
 const Left = styled.div`
@@ -66,6 +70,12 @@ const Title = styled.h5`
     lineHeight: '34px',
     padding: 0
   })}
+
+  ${tablet({
+    fontSize: 38,
+    lineHeight: '34px',
+    padding: 0
+  })}
 `
 
 const Right = styled.div`
@@ -73,6 +83,10 @@ const Right = styled.div`
   padding: 40px;
 
   ${mobile({
+    paddingTop: 0
+  })}
+
+  ${tablet({
     paddingTop: 0
   })}
 `
@@ -86,6 +100,11 @@ const Description = styled.span`
   ${mobile({
     fontSize: 16,
     lineHeight: '25px'
+  })}
+
+  ${tablet({
+    fontSize: 18,
+    lineHeight: '28px'
   })}
 `
 
