@@ -10,9 +10,12 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import { useState } from 'react'
 import { mobile, tablet } from '../responsive'
+import { useLocation } from 'react-router-dom'
 
 function Products() {
-  const [type, setType] = useState('')
+  const [type, setType] = useState('peau')
+  const location = useLocation()
+  const category = location.pathname.split('/')[2]
 
   const handleType = (event) => {
     setType(event.target.value)
@@ -38,14 +41,14 @@ function Products() {
                 color='success'
                 onChange={handleType}
               >
-                <MenuItem value='Cheveux'>Cheveux</MenuItem>
-                <MenuItem value='Visage'>Visage</MenuItem>
-                <MenuItem value='Corps'>Corps</MenuItem>
+                <MenuItem value='cheveux'>cheveux</MenuItem>
+                <MenuItem value='visage'>visage</MenuItem>
+                <MenuItem value='peau'>peau</MenuItem>
               </Select>
             </FormControl>
           </Filter>
         </FilterContainer>
-        <ProductList />
+        <ProductList category={category} type={type} />
       </Container>
       <Footer />
     </>
