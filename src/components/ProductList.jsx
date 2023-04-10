@@ -2,14 +2,41 @@
 
 import styled from 'styled-components'
 import ProductItem from './ProductItem'
-import { productItems } from '../data'
 import { mobile, tablet } from '../responsive'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
-function ProductList() {
+function ProductList({ category, type }) {
+  const [products, setProducts] = useState([])
+  const [filteredProducts, setFilteredProducts] = useState([])
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await axios.get(
+          category
+            ? `http://localhost:5000/api/products?category=${category}`
+            : 'http://localhost:5000/api/products'
+        )
+        setProducts(res.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getProducts()
+  }, [category])
+
+  useEffect(() => {
+    category &&
+      setFilteredProducts(
+        products.filter((product) => product.type.includes(type))
+      )
+  }, [products, category, type])
+
   return (
     <Container>
-      {productItems.map((item) => (
-        <ProductItem item={item} key={item.id} />
+      {filteredProducts.map((item) => (
+        <ProductItem item={item} key={item._id} />
       ))}
     </Container>
   )
