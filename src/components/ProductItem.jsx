@@ -12,7 +12,7 @@ function ProductItem({ item }) {
   return (
     <Container>
       <Image src={item.image} alt={item.description} />
-      <Link>
+      <Link to={`/product/${item._id}`}>
         <Details>
           <Icon>
             <ShoppingCartOutlined />
@@ -51,7 +51,7 @@ const Details = styled.div`
 const Container = styled.div`
   flex: 1;
   position: relative;
-  width: 330px;
+  max-width: 330px;
   min-height: 300px;
   display: flex;
   align-items: center;

@@ -7,10 +7,9 @@ import { Link } from 'react-router-dom'
 function CategoryItem({ item }) {
   return (
     <Container id={item.category}>
-      <Link>
+      <Link to={`/products/${item.category}`}>
         <Image src={item.image} />
         <Details>
-          <Title>{item.title}</Title>
           <ButtonContainer>
             <Button variant='contained' color='success'>
               VOIR
@@ -48,10 +47,6 @@ const Details = styled.div`
   align-items: center;
   justify-content: flex-end;
   color: white;
-`
-
-const Title = styled.h1`
-  margin-bottom: 20px;
 `
 
 const ButtonContainer = styled.div`
