@@ -9,7 +9,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
 import Button from '@mui/material/Button'
 import PersonIcon from '@mui/icons-material/Person'
-import { mobile, tablet } from '../responsive'
+import { mobile } from '../responsive'
 
 function Register() {
   return (
