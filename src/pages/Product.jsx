@@ -3,7 +3,6 @@
 import styled from 'styled-components'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import OilJpg from '../images/product1.jpg'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
@@ -18,6 +17,15 @@ function Product() {
   const location = useLocation()
   const productId = location.pathname.split('/')[2]
   const [product, setProduct] = useState({})
+  const [quantity, setQuantity] = useState(1)
+
+  const handleQuantity = (type) => {
+    if (type === 'dec') {
+      quantity > 1 && setQuantity(quantity - 1)
+    } else {
+      setQuantity(quantity + 1)
+    }
+  }
 
   useEffect(() => {
     const getProduct = async () => {
@@ -60,9 +68,9 @@ function Product() {
             </FilterContainer>
             <QuantityContainer>
               <FilterTitle>Quantité</FilterTitle>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove onClick={() => handleQuantity('dec')} />
+              <Amount>{quantity}</Amount>
+              <Add onClick={() => handleQuantity('inc')} />
             </QuantityContainer>
             <ButtonContainer>
               <Button variant='contained' color='success'>
