@@ -35,9 +35,11 @@ function ProductList({ category, type }) {
 
   return (
     <Container>
-      {filteredProducts.map((item) => (
-        <ProductItem item={item} key={item._id} />
-      ))}
+      {category
+        ? filteredProducts.map((item) => (
+            <ProductItem item={item} key={item._id} />
+          ))
+        : products.map((item) => <ProductItem item={item} key={item._id} />)}
     </Container>
   )
 }
