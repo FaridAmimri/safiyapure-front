@@ -21,21 +21,13 @@ export const sliderItems = [
 export const categorieItems = [
   {
     id: 1,
-    image: 'assets/categories/categorie1.jpg',
-    title: 'HAIR',
-    category: 'Cheveux'
+    image: 'assets/categories/categorie2.jpg',
+    category: 'cosmetiques'
   },
   {
     id: 2,
-    image: 'assets/categories/categorie2.jpg',
-    title: 'FACE',
-    category: 'Visage'
-  },
-  {
-    id: 3,
     image: 'assets/categories/categorie3.jpg',
-    title: 'BODY',
-    category: 'Peau'
+    category: 'alimentaires'
   }
 ]
 
@@ -71,30 +63,30 @@ export const productItems = [
     id: 1,
     image: 'assets/products/product1.jpg',
     description: "Huile d'Amande douce",
-    category: 'Peau'
+    category: 'peau'
   },
   {
     id: 2,
     image: 'assets/products/product2.jpg',
     description: 'Huile de Nigelle',
-    category: 'Peau'
+    category: 'peau'
   },
   {
     id: 3,
     image: 'assets/products/product3.jpg',
     description: 'Huile de Ricin',
-    category: 'Cheveux'
+    category: 'cheveux'
   },
   {
     id: 4,
     image: 'assets/products/product4.jpg',
     description: "Huile d'Aloe vera",
-    category: 'Peau'
+    category: 'peau'
   },
   {
     id: 5,
     image: 'assets/products/product5.jpg',
     description: "Huile d'Argan",
-    category: 'Visage'
+    category: 'visage'
   }
 ]
