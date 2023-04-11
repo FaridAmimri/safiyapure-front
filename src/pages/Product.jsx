@@ -10,27 +10,39 @@ import MenuItem from '@mui/material/MenuItem'
 import Button from '@mui/material/Button'
 import { Remove, Add } from '@mui/icons-material'
 import { mobile, tablet } from '../responsive'
+import { useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { publicRequest } from '../requests'
 
 function Product() {
+  const location = useLocation()
+  const productId = location.pathname.split('/')[2]
+  const [product, setProduct] = useState({})
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get(`/products/${productId}`)
+        setProduct(res.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getProduct()
+  }, [productId])
+
   return (
     <>
       <Navbar />
       <Container>
         <Wrapper>
           <ProductContainer>
-            <Image src={OilJpg} alt='huile cosmétique' />
+            <Image src={product.image} alt={product.title} />
           </ProductContainer>
           <DetailsContainer>
-            <Title>Huile d'Aloe Vera</Title>
-            <Description>
-              L'huile d'Aloe Vera redonne de la brillance à vos cheveux. Très
-              hydratante et nourrissante elle est particulièrement recommandée
-              pour les cheveux secs et très secs. Elle peut être utilisée au
-              quotidien pour hydrater, nourrir et redonner de l'éclat à tous
-              types de peaux ainsi que pour lutter efficacement contre le
-              vieillissement cutané en stimulant la production de collagène.
-            </Description>
-            <Price>4,70 €</Price>
+            <Title>{product.title}</Title>
+            <Description>{product.description}</Description>
+            <Price>{product.price} €</Price>
             <FilterContainer>
               <FilterWrapper>
                 <FilterTitle>Conditionnement</FilterTitle>
@@ -41,7 +53,7 @@ function Product() {
                     id='conditioning'
                     value='30 ml'
                   >
-                    <MenuItem value='30 ml'>30 ml</MenuItem>
+                    <MenuItem value='30 ml'>{product.conditioning}</MenuItem>
                   </Select>
                 </FormControl>
               </FilterWrapper>
