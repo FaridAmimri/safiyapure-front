@@ -9,9 +9,11 @@ import MenuBtn from '../images/menubutton.jpg'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { mobile, tablet } from '../responsive'
+import { useSelector } from 'react-redux'
 
 function Navbar() {
   const [expandNavbar, setExpandNavbar] = useState(false)
+  const quantity = useSelector((state) => state.cart.quantity)
 
   const handleMenu = () => {
     setExpandNavbar(!expandNavbar)
@@ -26,11 +28,14 @@ function Navbar() {
             <MenuItem>Home</MenuItem>
           </Link>
           <Link to='/products/cosmetiques' className='link'>
-            <MenuItem>Produits</MenuItem>
+            <MenuItem>Cosmétiques</MenuItem>
           </Link>
-          <Link to='/about' className='link'>
+          <Link to='/products/alimentaires' className='link'>
+            <MenuItem>Alimentaires</MenuItem>
+          </Link>
+          {/* <Link to='/about' className='link'>
             <MenuItem>À Propos</MenuItem>
-          </Link>
+          </Link> */}
         </Center>
         <Right expandNavbar={expandNavbar}>
           <Link to='/register' className='link'>
@@ -41,7 +46,7 @@ function Navbar() {
           </Link>
           <Link to='/cart' className='link'>
             <MenuItem className='link'>
-              <Badge badgeContent={1} color='success'>
+              <Badge badgeContent={quantity} color='success'>
                 <ShoppingCartOutlinedIcon />
               </Badge>
             </MenuItem>
@@ -51,13 +56,23 @@ function Navbar() {
           <Link to='/' className='link' onClick={handleMenu}>
             <MenuItem>Home</MenuItem>
           </Link>
-          <Link to='/products' className='link' onClick={handleMenu}>
-            <MenuItem>Produits</MenuItem>
+          <Link
+            to='/products/cosmetiques'
+            className='link'
+            onClick={handleMenu}
+          >
+            <MenuItem>Cosmétiques</MenuItem>
           </Link>
-          <Link to='/about' className='link' onClick={handleMenu}>
+          <Link
+            to='/products/alimentaires'
+            className='link'
+            onClick={handleMenu}
+          >
+            <MenuItem>Alimentaires</MenuItem>
+          </Link>
+          {/* <Link to='/about' className='link' onClick={handleMenu}>
             <MenuItem>A Propos</MenuItem>
-          </Link>
-
+          </Link> */}
           <Link to='/register' className='link' onClick={handleMenu}>
             <MuiButton text="S'enregistrer" />
           </Link>
