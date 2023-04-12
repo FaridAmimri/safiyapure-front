@@ -145,13 +145,7 @@ const Bottom = styled.div`
   overflow: hidden;
 
   ${mobile({
-    flexDirection: 'column-reverse',
-    padding: 0
-  })}
-
-  ${tablet({
-    flexDirection: 'column-reverse',
-    padding: 0
+    padding: '0px 0px 40px 40px'
   })}
 `
 
@@ -167,18 +161,6 @@ const ContainerArrow = styled.div`
   .arrow {
     color: black;
   }
-
-  ${mobile({
-    flexDirection: 'row',
-    width: 'auto',
-    margin: 0,
-    alignItems: 'flex-end'
-  })}
-
-  ${tablet({
-    flexDirection: 'row',
-    alignItems: 'flex-end'
-  })}
 `
 
 const LeftArrow = styled.div`
@@ -207,7 +189,7 @@ const RightArrow = styled.div`
 
 const Carousel = styled.div`
   display: flex;
-  transform: translateX(${(props) => props.currentSlide * -50}vw);
+  transform: translateX(${(props) => props.currentSlide * -60}vw);
   transition: all 1.5s ease-in-out;
 `
 
@@ -220,7 +202,7 @@ const Slide = styled.div`
   overflow: hidden;
 
   ${mobile({
-    width: 230,
+    width: 220,
     height: 170
   })}
 
