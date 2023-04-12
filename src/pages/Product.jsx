@@ -12,12 +12,15 @@ import { mobile, tablet } from '../responsive'
 import { useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { publicRequest } from '../requests'
+import { addProduct } from '../redux/cartSlice'
+import { useDispatch } from 'react-redux'
 
 function Product() {
   const location = useLocation()
   const productId = location.pathname.split('/')[2]
   const [product, setProduct] = useState({})
   const [quantity, setQuantity] = useState(1)
+  const dispatch = useDispatch()
 
   const handleQuantity = (type) => {
     if (type === 'dec') {
@@ -25,6 +28,15 @@ function Product() {
     } else {
       setQuantity(quantity + 1)
     }
+  }
+
+  const handleClick = () => {
+    dispatch(
+      addProduct({
+        ...product,
+        quantity
+      })
+    )
   }
 
   useEffect(() => {
@@ -73,7 +85,7 @@ function Product() {
               <Add onClick={() => handleQuantity('inc')} />
             </QuantityContainer>
             <ButtonContainer>
-              <Button variant='contained' color='success'>
+              <Button variant='contained' color='success' onClick={handleClick}>
                 Ajouter au panier
               </Button>
             </ButtonContainer>
