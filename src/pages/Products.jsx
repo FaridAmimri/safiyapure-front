@@ -25,29 +25,33 @@ function Products() {
     <>
       <Navbar />
       <Container>
-        <Title>Huiles Cosmétiques</Title>
-        <FilterContainer>
-          <Filter>
-            <FilterText>Filtrer les produits :</FilterText>
-            <FormControl sx={{ minWidth: 120 }} size='small'>
-              <InputLabel id='type-sort' color='success'>
-                Type
-              </InputLabel>
-              <Select
-                labelId='type-sort'
-                id='type-sort'
-                value={type}
-                label='Type'
-                color='success'
-                onChange={handleType}
-              >
-                <MenuItem value='cheveux'>cheveux</MenuItem>
-                <MenuItem value='visage'>visage</MenuItem>
-                <MenuItem value='peau'>peau</MenuItem>
-              </Select>
-            </FormControl>
-          </Filter>
-        </FilterContainer>
+        <Title>Huiles {category} </Title>
+        {category === 'cosmetiques' ? (
+          <FilterContainer>
+            <Filter>
+              <FilterText>Filtrer les produits : </FilterText>
+              <FormControl sx={{ minWidth: 120 }} size='small'>
+                <InputLabel id='type-sort' color='success'>
+                  Type
+                </InputLabel>
+                <Select
+                  labelId='type-sort'
+                  id='type-sort'
+                  value={type}
+                  label='Type'
+                  color='success'
+                  onChange={handleType}
+                >
+                  <MenuItem value='cheveux'>cheveux</MenuItem>
+                  <MenuItem value='visage'>visage</MenuItem>
+                  <MenuItem value='peau'>peau</MenuItem>
+                </Select>
+              </FormControl>
+            </Filter>
+          </FilterContainer>
+        ) : (
+          ''
+        )}
         <ProductList category={category} type={type} />
       </Container>
       <Footer />
@@ -58,6 +62,7 @@ function Products() {
 export default Products
 
 const Container = styled.div`
+  padding: 40px;
   padding-top: 80px;
 `
 
@@ -78,7 +83,7 @@ const Title = styled.h1`
 const FilterContainer = styled.div``
 
 const Filter = styled.div`
-  display: flex;
+  display: 'flex'
   margin: 20px;
   gap: 10px;
   align-items: center;
