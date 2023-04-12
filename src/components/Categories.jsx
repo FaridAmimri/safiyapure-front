@@ -2,30 +2,12 @@
 
 import styled from 'styled-components'
 import ElementIcon from '../images/element.png'
-import IconButton from '@mui/material/IconButton'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+import BioIcon from '../images/bio.png'
 import { categorieItems } from '../data'
 import CategoryItem from './CategoryItem'
-import { useState } from 'react'
 import { mobile, tablet } from '../responsive'
 
 function Categories() {
-  const slideListLength = categorieItems.length
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  const handleArrow = (direction) => {
-    if (direction === 'left') {
-      setCurrentSlide(
-        currentSlide === 0 ? slideListLength - 1 : currentSlide - 1
-      )
-    }
-    if (direction === 'right') {
-      setCurrentSlide(
-        currentSlide === slideListLength - 1 ? 0 : currentSlide + 1
-      )
-    }
-  }
   return (
     <Container>
       <Top>
@@ -34,7 +16,7 @@ function Categories() {
           <AnimationContainer>
             <Image src={ElementIcon} alt='icône étoile' />
           </AnimationContainer>
-          <Carousel currentSlide={currentSlide}>
+          <Carousel>
             {categorieItems.map((item) => (
               <CategoryItem key={item.id} item={item} id={item} />
             ))}
@@ -43,34 +25,17 @@ function Categories() {
 
         <Right>
           <Wrapper>
-            <Title>Des solutions pour tous</Title>
-            <ArrowContainer>
-              <LeftArrow>
-                <IconButton
-                  direction='left'
-                  onClick={() => handleArrow('left')}
-                  style={{ backgroundColor: '#D2EDA8', opacity: '45%' }}
-                >
-                  <ChevronLeftIcon />
-                </IconButton>
-              </LeftArrow>
-              <RightArrow>
-                <IconButton
-                  direction='right'
-                  onClick={() => handleArrow('right')}
-                  style={{ backgroundColor: '#D2EDA8' }}
-                >
-                  <ChevronRightIcon />
-                </IconButton>
-              </RightArrow>
-            </ArrowContainer>
+            <Title>Des huiles Bio, analysées 100 % pures</Title>
+            <BioContainer>
+              <Image src={BioIcon} alt='icône étoile' />
+            </BioContainer>
           </Wrapper>
         </Right>
       </Top>
 
       <Bottom>
         <AnimationContainer>
-          <Image src={ElementIcon} alt='icône étoile' />
+          <Image src={ElementIcon} alt='icône bio' />
         </AnimationContainer>
       </Bottom>
     </Container>
@@ -147,30 +112,29 @@ const Carousel = styled.div`
   margin: 40px 0;
   align-items: flex-end;
   overflow: hidden;
-  transform: translateX(${(props) => props.currentSlide * 20}vw);
-  transition: all 1.5s ease-in-out;
 
   ${mobile({
-    margin: 0
+    margin: 0,
+    flexDirection: 'column'
   })}
 
   ${tablet({
-    margin: 0
+    margin: 0,
+    flexDirection: 'column'
   })}
 
-  #Cheveux {
-    height: 314px;
-  }
-  #Visage {
+  #cosmetiques {
     height: 390px;
+    margin: 20px;
   }
-  #Peau {
+  #alimentaires {
     height: 470px;
+    margin: 20px;
   }
 `
 
 const Right = styled.div`
-  flex: 1;
+  flex: 2;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -206,29 +170,19 @@ const Title = styled.h2`
   })}
 `
 
-const ArrowContainer = styled.div`
-  width: 107px;
-  height: 42px;
+const BioContainer = styled.div`
+  height: 100px;
   display: flex;
-  justify-content: space-between;
-`
-
-const LeftArrow = styled.div`
-  display: flex;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-`
-
-const RightArrow = styled.div`
-  display: flex;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
 `
 
 const Bottom = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 90%;
+
+  ${mobile({
+    display: 'none'
+  })}
 `
