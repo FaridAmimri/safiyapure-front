@@ -4,11 +4,46 @@ import styled from 'styled-components'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Button from '@mui/material/Button'
-import OilJpg from '../images/product1.jpg'
-import { Remove, Add } from '@mui/icons-material'
+import DeleteIcon from '@mui/icons-material/Delete'
 import { mobile, tablet } from '../responsive'
+import StripeCheckout from 'react-stripe-checkout'
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { userRequest } from '../requests'
+import { deleteProduct } from '../redux/cartSlice'
+import { useDispatch } from 'react-redux'
+
+const KEY = process.env.REACT_APP_STRIPE
 
 function Cart() {
+  const cart = useSelector((state) => state.cart)
+  const [stripeToken, setStripeToken] = useState(null)
+  const dispatch = useDispatch()
+
+  const handleToken = (token) => {
+    setStripeToken(token)
+  }
+
+  const handleDelete = (product) => {
+    dispatch(deleteProduct(product))
+  }
+
+  useEffect(() => {
+    const request = async (req, res) => {
+      try {
+        const res = await userRequest.post('checkout/payment', {
+          tokenId: stripeToken.id,
+          amount: cart.total * 100
+        })
+        console.log(res.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    stripeToken && request()
+  }, [stripeToken, cart.total])
+
   return (
     <Container>
       <Navbar />
@@ -24,53 +59,70 @@ function Cart() {
             RETOUR
           </Button>
           <Texts>
-            <Text>Panier d'Achat (2)</Text>
-            <Text>List de souhaits (0)</Text>
+            <Text>Nombre d'articles ({cart.quantity})</Text>
           </Texts>
-          <Button
-            variant='outlined'
-            size='small'
-            color='success'
-            sx={{ width: '150px' }}
-          >
-            CONTINUER
-          </Button>
+          <Link to='/products/cosmetiques'>
+            <Button
+              variant='outlined'
+              size='small'
+              color='success'
+              sx={{ width: '150px' }}
+            >
+              CONTINUER
+            </Button>
+          </Link>
         </Top>
 
         <Bottom>
-          <Product>
-            <Item>
-              <ProductDetail>
-                <Image src={OilJpg} alt='huile cosmétique' />
-                <Content>
-                  <Name>
-                    <b>Produit: </b>Huile d'Aloe vera
-                  </Name>
-                  <Id>
-                    <b>Id: </b>48758595958437
-                  </Id>
-                  <Conditioning>
-                    <b>Conditionnement: </b>30 ml
-                  </Conditioning>
-                </Content>
-              </ProductDetail>
-              <PriceDetail>
-                <AmountContainer>
-                  <Remove />
-                  <Amount>3</Amount>
-                  <Add />
-                </AmountContainer>
-                <Price>34 €</Price>
-              </PriceDetail>
-            </Item>
-            <Hr />
-          </Product>
+          <Products>
+            {cart.products.map((product) => (
+              <Product key={product._id}>
+                <Item>
+                  <ProductDetail>
+                    <Image src={product.image} alt={product.title} />
+                    <Content>
+                      <Name>
+                        <b>Produit: </b>
+                        {product.title}
+                      </Name>
+                      <Id>
+                        <b>Id: </b>
+                        {product._id.slice(0, 10)}...
+                      </Id>
+                      <Conditioning>
+                        <b>Conditionnement: </b>
+                        {product.conditioning}
+                      </Conditioning>
+                      <Quantity>
+                        <b>Quantité: </b>
+                        {product.quantity}
+                      </Quantity>
+                    </Content>
+                  </ProductDetail>
+                  <PriceDetail>
+                    <Price>{product.price * product.quantity} €</Price>
+                    <Button
+                      variant='outlined'
+                      size='small'
+                      color='error'
+                      startIcon={<DeleteIcon />}
+                      sx={{ width: '100px' }}
+                      onClick={() => handleDelete(product)}
+                    >
+                      Suppr
+                    </Button>
+                  </PriceDetail>
+                </Item>
+                <Hr />
+              </Product>
+            ))}
+          </Products>
 
           <Summary>
             <SummaryTitle>VOTRE COMMANDE</SummaryTitle>
             <SummaryItem>
               <SummaryContent>Article(s)</SummaryContent>
-              <SummaryPrice>13 €</SummaryPrice>
+              <SummaryPrice>{cart.total} €</SummaryPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryContent>Livraison</SummaryContent>
@@ -78,17 +130,30 @@ function Cart() {
             </SummaryItem>
             <SummaryItem>
               <SummaryContent>Remise</SummaryContent>
-              <SummaryPrice>-6.90 €</SummaryPrice>
+              <SummaryPrice>-4.90 €</SummaryPrice>
             </SummaryItem>
             <SummaryItem className='total'>
               <SummaryContent>Total</SummaryContent>
-              <SummaryPrice>13 €</SummaryPrice>
+              <SummaryPrice>{cart.total} €</SummaryPrice>
             </SummaryItem>
-            <StripeButton>
-              <Button variant='contained' size='medium' color='success'>
-                COMMANDER
-              </Button>
-            </StripeButton>
+            <StripeCheckout
+              name='SafiyaPure'
+              image=''
+              billingAddress
+              shippingAddress
+              description={`Votre total est de ${cart.total} €`}
+              amount={cart.total * 100}
+              locale='fr'
+              currency='EUR'
+              token={handleToken}
+              stripeKey={KEY}
+            >
+              <StripeButton>
+                <Button variant='contained' size='medium' color='success'>
+                  COMMANDER
+                </Button>
+              </StripeButton>
+            </StripeCheckout>
           </Summary>
         </Bottom>
       </Wrapper>
@@ -129,7 +194,7 @@ const Top = styled.div`
 const Texts = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
   ${mobile({
     visibility: 'hidden'
@@ -159,9 +224,13 @@ const Bottom = styled.div`
   })}
 `
 
-const Product = styled.div`
+const Products = styled.div`
   flex: 3;
+  display: flex;
+  flex-direction: column;
 `
+
+const Product = styled.div``
 
 const Item = styled.div`
   display: flex;
@@ -206,11 +275,16 @@ const Conditioning = styled.span`
   margin-bottom: 10px;
 `
 
+const Quantity = styled.span`
+  margin-bottom: 10px;
+`
+
 const PriceDetail = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 
   ${mobile({
     alignItems: 'center',
@@ -222,19 +296,11 @@ const PriceDetail = styled.div`
     marginBottom: 30
   })}
 `
-const AmountContainer = styled.div`
-  display: flex;
-  align-items: center;
-`
-
-const Amount = styled.div`
-  font-size: 24px;
-  margin: 5px;
-`
 
 const Price = styled.div`
   font-size: 30px;
   font-weight: 300;
+  margin-bottom: 10px;
 `
 
 const Hr = styled.hr`
