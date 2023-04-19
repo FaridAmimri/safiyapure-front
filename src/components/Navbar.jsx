@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux'
 function Navbar() {
   const [expandNavbar, setExpandNavbar] = useState(false)
   const quantity = useSelector((state) => state.cart.quantity)
+  const user = useSelector((state) => state.user.currentUser)
 
   const handleMenu = () => {
     setExpandNavbar(!expandNavbar)
@@ -33,17 +34,21 @@ function Navbar() {
           <Link to='/products/alimentaires' className='link'>
             <MenuItem>Alimentaires</MenuItem>
           </Link>
-          {/* <Link to='/about' className='link'>
-            <MenuItem>À Propos</MenuItem>
-          </Link> */}
+          <Link to='/about' className='link'>
+            <MenuItem>About</MenuItem>
+          </Link>
         </Center>
         <Right expandNavbar={expandNavbar}>
-          <Link to='/register' className='link'>
-            <MuiButton text="S'enregistrer" />
-          </Link>
-          <Link to='/login' className='link'>
-            <MuiButton text='Se connecter' />
-          </Link>
+          {!user && (
+            <>
+              <Link to='/register' className='link'>
+                <MuiButton text="S'enregistrer" />
+              </Link>
+              <Link to='/login' className='link'>
+                <MuiButton text='Se connecter' />
+              </Link>
+            </>
+          )}
           <Link to='/cart' className='link'>
             <MenuItem className='link'>
               <Badge badgeContent={quantity} color='success'>
@@ -70,18 +75,22 @@ function Navbar() {
           >
             <MenuItem>Alimentaires</MenuItem>
           </Link>
-          {/* <Link to='/about' className='link' onClick={handleMenu}>
+          <Link to='/about' className='link' onClick={handleMenu}>
             <MenuItem>A Propos</MenuItem>
-          </Link> */}
-          <Link to='/register' className='link' onClick={handleMenu}>
-            <MuiButton text="S'enregistrer" />
           </Link>
-          <Link to='/login' className='link' onClick={handleMenu}>
-            <MuiButton text='Se connecter' />
-          </Link>
+          {!user && (
+            <>
+              <Link to='/register' className='link' onClick={handleMenu}>
+                <MuiButton text="S'enregistrer" />
+              </Link>
+              <Link to='/login' className='link' onClick={handleMenu}>
+                <MuiButton text='Se connecter' />
+              </Link>
+            </>
+          )}
           <Link to='/cart' className='link' onClick={handleMenu}>
             <MenuItem className='link'>
-              <Badge badgeContent={1} color='success'>
+              <Badge badgeContent={quantity} color='success'>
                 <ShoppingCartOutlinedIcon />
               </Badge>
             </MenuItem>
