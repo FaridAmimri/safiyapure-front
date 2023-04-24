@@ -1,6 +1,13 @@
 /** @format */
 
-import { loginStart, loginSuccess, loginFailure } from './userSlice'
+import {
+  loginStart,
+  loginSuccess,
+  loginFailure,
+  registerStart,
+  registerSuccess,
+  registerFailure
+} from './userSlice'
 import { publicRequest } from '../requests'
 
 export const login = async (dispatch, user) => {
@@ -10,5 +17,15 @@ export const login = async (dispatch, user) => {
     dispatch(loginSuccess(res.data))
   } catch (error) {
     dispatch(loginFailure())
+  }
+}
+
+export const register = async (dispatch, user) => {
+  dispatch(registerStart())
+  try {
+    await publicRequest.post('/auth/register', user)
+    dispatch(registerSuccess())
+  } catch (error) {
+    dispatch(registerFailure())
   }
 }
