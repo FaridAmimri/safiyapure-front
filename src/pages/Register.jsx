@@ -4,59 +4,126 @@ import styled from 'styled-components'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
+import MuiInput from '../components/MuiInput'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
 import Button from '@mui/material/Button'
 import PersonIcon from '@mui/icons-material/Person'
 import { mobile } from '../responsive'
+import { useState, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { register } from '../redux/apiCalls'
+
+const initialValues = {
+  username: '',
+  email: '',
+  password: ''
+}
 
 function Register() {
+  const formRef = useRef()
+  const [values, setValues] = useState(initialValues)
+  const [acceptTnC, setAcceptTnC] = useState(true)
+  const [errors, setErrors] = useState({})
+  const dispatch = useDispatch()
+  const { isFetching, RegisterError } = useSelector((state) => state.user)
+
+  const validate = () => {
+    let temp = {}
+    const regexEmail = /\S+@\S+\.\S+/
+
+    temp.username = values.username ? '' : 'Entrer votre nom'
+    temp.email = regexEmail.test(values.email) ? '' : 'Entrer un email'
+    temp.password = values.password ? '' : 'Entrer un mot de passe'
+    temp.acceptTnC = acceptTnC
+      ? ''
+      : 'Veuillez accepter les conditions du contrat'
+    setErrors({ ...temp })
+    return Object.values(temp).every((x) => x === '')
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setValues({
+      ...values,
+      [name]: value
+    })
+  }
+
+  const handleCheckBox = (e) => {
+    setAcceptTnC(e.target.checked)
+  }
+
+  const handleRegister = (e) => {
+    e.preventDefault()
+    if (validate()) {
+      console.log('Registered')
+      register(dispatch, values)
+    }
+  }
+
   return (
     <>
       <Navbar />
       <Container>
         <FormContainer>
           <Title>PREMIÈRE VISITE ?</Title>
-          <Box className='form' component='form'>
-            <TextField
-              className='input'
-              id='email'
-              label='Email'
-              color='success'
+          <Box className='form' component='form' ref={formRef}>
+            <MuiInput
+              label='Entrer un nom'
+              name='username'
+              value={values.username}
+              error={errors.username}
+              onChange={handleInputChange}
             />
-            <TextField
-              className='input'
-              id='password'
-              label='Mot de passe'
-              type='password'
-              color='success'
+            <MuiInput
+              label='Entrer un email'
+              name='email'
+              value={values.email}
+              error={errors.email}
+              onChange={handleInputChange}
             />
-            <TextField
-              className='input'
-              id='confirm-password'
-              label='Confirmer mot de passe'
+            <MuiInput
+              label='Entrer un mot de passe'
+              name='password'
               type='password'
-              color='success'
+              value={values.password}
+              error={errors.password}
+              onChange={handleInputChange}
             />
             <div className='agreementContainer'>
               <FormControlLabel
                 className='agreement'
-                control={<Checkbox className='checkbox' color='success' />}
+                control={
+                  <Checkbox
+                    className='checkbox'
+                    color='success'
+                    checked={acceptTnC}
+                    onChange={handleCheckBox}
+                  />
+                }
                 label="J'accepte les termes et conditions d'utilisation"
               />
+              {!acceptTnC && <ErrorMessage>{errors.acceptTnC}</ErrorMessage>}
               <Button
                 className='button'
                 variant='contained'
                 color='success'
                 sx={{ width: '230px' }}
                 startIcon={<PersonIcon />}
+                onClick={handleRegister}
+                disabled={isFetching}
               >
                 Créer mon compte
               </Button>
             </div>
           </Box>
         </FormContainer>
+        <ErrorContainer>
+          {RegisterError && (
+            <ErrorMessage>Cet email est déjà associé à un compte</ErrorMessage>
+          )}
+        </ErrorContainer>
       </Container>
       <Footer />
     </>
@@ -67,6 +134,7 @@ export default Register
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 100px 80px 80px 80px;
@@ -121,4 +189,18 @@ const Title = styled.h1`
   ${mobile({
     textAlign: 'center'
   })}
+`
+
+const ErrorContainer = styled.div`
+  width: 363px;
+  margin: 20px 0;
+
+  ${mobile({
+    width: 300
+  })}
+`
+
+const ErrorMessage = styled.span`
+  color: red;
+  margin-bottom: 20px;
 `
