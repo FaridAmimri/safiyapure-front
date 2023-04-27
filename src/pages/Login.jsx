@@ -6,11 +6,13 @@ import Footer from '../components/Footer'
 import Box from '@mui/material/Box'
 import MuiInput from '../components/MuiInput'
 import Button from '@mui/material/Button'
+import CircularProgress from '@mui/material/CircularProgress'
 import LockIcon from '@mui/icons-material/Lock'
 import { mobile, tablet } from '../responsive'
 import { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../redux/apiCalls'
+import { useNavigate } from 'react-router-dom'
 
 const initialValues = {
   email: '',
@@ -23,6 +25,7 @@ function Login() {
   const [errors, setErrors] = useState({})
   const dispatch = useDispatch()
   const { isFetching, loginError } = useSelector((state) => state.user)
+  const navigate = useNavigate()
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -46,6 +49,7 @@ function Login() {
     e.preventDefault()
     if (validate()) {
       login(dispatch, values)
+      navigate('/')
     }
   }
 
@@ -86,8 +90,11 @@ function Login() {
           </Box>
         </FormContainer>
         <ErrorContainer>
-          {loginError && (
+          {isFetching && <CircularProgress color='success' />}
+          {loginError & !isFetching ? (
             <ErrorMessage>Email ou mot de passe incorrect</ErrorMessage>
+          ) : (
+            ''
           )}
         </ErrorContainer>
       </Container>
@@ -148,12 +155,15 @@ const FormContainer = styled.div`
 `
 
 const ErrorContainer = styled.div`
-  display: flex;
-  justify-content: center;
   width: 300px;
-  margin: 20px 0;
+  margin: 30px 0;
+
+  ${mobile({
+    display: 'flex',
+    justifyContent: 'center'
+  })}
 `
 
 const ErrorMessage = styled.span`
-  color: red;
+  color: #d32f2f;
 `
