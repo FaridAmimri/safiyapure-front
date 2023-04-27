@@ -8,11 +8,13 @@ import MuiInput from '../components/MuiInput'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
 import Button from '@mui/material/Button'
+import CircularProgress from '@mui/material/CircularProgress'
 import PersonIcon from '@mui/icons-material/Person'
 import { mobile } from '../responsive'
 import { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { register } from '../redux/apiCalls'
+import { useNavigate } from 'react-router-dom'
 
 const initialValues = {
   username: '',
@@ -27,6 +29,19 @@ function Register() {
   const [errors, setErrors] = useState({})
   const dispatch = useDispatch()
   const { isFetching, RegisterError } = useSelector((state) => state.user)
+  const navigate = useNavigate()
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setValues({
+      ...values,
+      [name]: value
+    })
+  }
+
+  const handleCheckBox = (e) => {
+    setAcceptTnC(e.target.checked)
+  }
 
   const validate = () => {
     let temp = {}
@@ -42,23 +57,11 @@ function Register() {
     return Object.values(temp).every((x) => x === '')
   }
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setValues({
-      ...values,
-      [name]: value
-    })
-  }
-
-  const handleCheckBox = (e) => {
-    setAcceptTnC(e.target.checked)
-  }
-
   const handleRegister = (e) => {
     e.preventDefault()
     if (validate()) {
-      console.log('Registered')
       register(dispatch, values)
+      navigate('/')
     }
   }
 
@@ -70,7 +73,7 @@ function Register() {
           <Title>PREMIÈRE VISITE ?</Title>
           <Box className='form' component='form' ref={formRef}>
             <MuiInput
-              label='Entrer un nom'
+              label="Entrer un nom d'utilisateur"
               name='username'
               value={values.username}
               error={errors.username}
@@ -120,8 +123,11 @@ function Register() {
           </Box>
         </FormContainer>
         <ErrorContainer>
-          {RegisterError && (
-            <ErrorMessage>Cet email est déjà associé à un compte</ErrorMessage>
+          {isFetching && <CircularProgress color='success' />}
+          {RegisterError & !isFetching ? (
+            <ErrorMessage>Nom ou Email déjà associé à un compte</ErrorMessage>
+          ) : (
+            ''
           )}
         </ErrorContainer>
       </Container>
@@ -196,11 +202,13 @@ const ErrorContainer = styled.div`
   margin: 20px 0;
 
   ${mobile({
-    width: 300
+    width: 300,
+    display: 'flex',
+    justifyContent: 'center'
   })}
 `
 
 const ErrorMessage = styled.span`
-  color: red;
+  color: #d32f2f;
   margin-bottom: 20px;
 `
