@@ -6,7 +6,8 @@ import {
   loginFailure,
   registerStart,
   registerSuccess,
-  registerFailure
+  registerFailure,
+  logoutStart
 } from './userSlice'
 import { publicRequest } from '../requests'
 
@@ -28,4 +29,8 @@ export const register = async (dispatch, user) => {
   } catch (error) {
     dispatch(registerFailure())
   }
+}
+
+export const logout = (dispatch) => {
+  dispatch(logoutStart())
 }

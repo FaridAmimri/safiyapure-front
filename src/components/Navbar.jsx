@@ -3,21 +3,30 @@
 import styled from 'styled-components'
 import IconButton from '@mui/material/IconButton'
 import Badge from '@mui/material/Badge'
+import Avatar from '@mui/material/Avatar'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
+import LogoutIcon from '@mui/icons-material/Logout'
 import MuiButton from './MuiButton'
 import MenuBtn from '../images/menubutton.jpg'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { mobile, tablet } from '../responsive'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../redux/apiCalls'
 
 function Navbar() {
   const [expandNavbar, setExpandNavbar] = useState(false)
   const quantity = useSelector((state) => state.cart.quantity)
   const user = useSelector((state) => state.user.currentUser)
+  const dispatch = useDispatch()
 
   const handleMenu = () => {
     setExpandNavbar(!expandNavbar)
+  }
+
+  const handleLogout = (e) => {
+    e.preventDefault()
+    logout(dispatch)
   }
 
   return (
@@ -39,7 +48,7 @@ function Navbar() {
           </Link>
         </Center>
         <Right expandNavbar={expandNavbar}>
-          {!user && (
+          {!user ? (
             <>
               <Link to='/register' className='link'>
                 <MuiButton text="S'enregistrer" />
@@ -47,6 +56,20 @@ function Navbar() {
               <Link to='/login' className='link'>
                 <MuiButton text='Se connecter' />
               </Link>
+            </>
+          ) : (
+            <>
+              <Avatar alt={user.username} sx={{ width: 30, height: 30 }}>
+                {user.username.charAt(0)}
+              </Avatar>
+              <IconButton
+                aria-label='logout'
+                color='success'
+                sx={{ width: 30, height: 30 }}
+                onClick={handleLogout}
+              >
+                <LogoutIcon />
+              </IconButton>
             </>
           )}
           <Link to='/cart' className='link'>
@@ -78,7 +101,7 @@ function Navbar() {
           <Link to='/about' className='link' onClick={handleMenu}>
             <MenuItem>A Propos</MenuItem>
           </Link>
-          {!user && (
+          {!user ? (
             <>
               <Link to='/register' className='link' onClick={handleMenu}>
                 <MuiButton text="S'enregistrer" />
@@ -86,6 +109,20 @@ function Navbar() {
               <Link to='/login' className='link' onClick={handleMenu}>
                 <MuiButton text='Se connecter' />
               </Link>
+            </>
+          ) : (
+            <>
+              <Avatar alt={user.username} sx={{ width: 25, height: 25 }}>
+                {user.username.charAt(0)}
+              </Avatar>
+              <IconButton
+                aria-label='logout'
+                color='success'
+                sx={{ width: 25, height: 25 }}
+                onClick={handleLogout}
+              >
+                <LogoutIcon />
+              </IconButton>
             </>
           )}
           <Link to='/cart' className='link' onClick={handleMenu}>
