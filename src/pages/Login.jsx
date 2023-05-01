@@ -87,6 +87,7 @@ function Login() {
             >
               Connexion
             </Button>
+            <Link href='/password'>Mot de passe oublié ?</Link>
           </Box>
         </FormContainer>
         <ErrorContainer>
@@ -152,6 +153,14 @@ const FormContainer = styled.div`
   .button svg {
     font-size: 25px;
   }
+`
+
+const Link = styled.a`
+  margin: 5px 0;
+  font-size: 15px;
+  text-decoration: underline;
+  cursor: pointer;
+  color: inherit;
 `
 
 const ErrorContainer = styled.div`
