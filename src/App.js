@@ -13,6 +13,8 @@ import Product from './pages/Product'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Cart from './pages/Cart'
+import Password from './pages/Password'
+
 import { useSelector } from 'react-redux'
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
         />
         <Route path='/login' element={user ? <Navigate to='/' /> : <Login />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/password' element={<Password />} />
       </Routes>
     </Router>
   )
