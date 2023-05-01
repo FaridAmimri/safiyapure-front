@@ -7,7 +7,10 @@ import {
   registerStart,
   registerSuccess,
   registerFailure,
-  logoutStart
+  logoutStart,
+  resetStart,
+  resetSuccess,
+  resetFailure
 } from './userSlice'
 import { publicRequest } from '../requests'
 
@@ -33,4 +36,14 @@ export const register = async (dispatch, user) => {
 
 export const logout = (dispatch) => {
   dispatch(logoutStart())
+}
+
+export const reset = async (dispatch, user) => {
+  dispatch(resetStart())
+  try {
+    await publicRequest.post('/password/reset', user)
+    dispatch(resetSuccess())
+  } catch (error) {
+    dispatch(resetFailure())
+  }
 }
