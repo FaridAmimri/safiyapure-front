@@ -14,6 +14,7 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import Cart from './pages/Cart'
 import Password from './pages/Password'
+import Terms from './pages/Terms'
 
 import { useSelector } from 'react-redux'
 
@@ -33,6 +34,7 @@ function App() {
         <Route path='/login' element={user ? <Navigate to='/' /> : <Login />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/password' element={<Password />} />
+        <Route path='/terms-and-conditions' element={<Terms />} />
       </Routes>
     </Router>
   )
