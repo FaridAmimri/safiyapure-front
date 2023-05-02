@@ -43,9 +43,6 @@ function Navbar() {
           <Link to='/products/alimentaires' className='link'>
             <MenuItem>Alimentaires</MenuItem>
           </Link>
-          <Link to='/about' className='link'>
-            <MenuItem>About</MenuItem>
-          </Link>
         </Center>
         <Right expandNavbar={expandNavbar}>
           {!user ? (
@@ -97,9 +94,6 @@ function Navbar() {
             onClick={handleMenu}
           >
             <MenuItem>Alimentaires</MenuItem>
-          </Link>
-          <Link to='/about' className='link' onClick={handleMenu}>
-            <MenuItem>A Propos</MenuItem>
           </Link>
           {!user ? (
             <>
