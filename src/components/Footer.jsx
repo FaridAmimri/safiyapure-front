@@ -22,14 +22,14 @@ function Footer() {
           <SocialContainer>
             <SocialIcon color='385999'>
               <a
-                href='https://web.facebook.com/profile.php?id=100089079309129'
+                href='https://www.facebook.com/SafiyaPureVegetableOils/'
                 target='blank'
               >
                 <FacebookIcon />
               </a>
             </SocialIcon>
             <SocialIcon color='E4405F'>
-              <a href='https://www.instagram.com/_faridigital_/' target='blank'>
+              <a href='https://www.instagram.com/safiyapure/' target='blank'>
                 <InstagramIcon />
               </a>
             </SocialIcon>
@@ -40,12 +40,23 @@ function Footer() {
           <Wrapper>
             <Title>Liens Utiles</Title>
             <List>
-              <ListItem>Home</ListItem>
-              <ListItem>Hair Care</ListItem>
-              <ListItem>Face Care</ListItem>
-              <ListItem>Body Care</ListItem>
-              <ListItem>Mon Compte</ListItem>
-              <ListItem>Conditions</ListItem>
+              <ListItem>
+                <Link href='/'>Home</Link>
+              </ListItem>
+              <ListItem>
+                <Link href='/products/cosmetiques'>Hair Care</Link>
+              </ListItem>
+              <ListItem>
+                <Link href='/products/cosmetiques'>Face Care</Link>
+              </ListItem>
+              <ListItem>
+                <Link href='/products/cosmetiques'>Body Care</Link>
+              </ListItem>
+              <ListItem>
+                <Link href='/terms-and-conditions'>
+                  Conditions générales de ventes
+                </Link>
+              </ListItem>
             </List>
           </Wrapper>
         </Center>
@@ -62,7 +73,7 @@ function Footer() {
           </ContactItem>
           <ContactItem>
             <MailIcon />
-            contact@safiyapure.io
+            contact@safiyapurecom.fr
           </ContactItem>
           <Payment src='https://i.ibb.co/Qfvn4z6/payment.png' />
         </Right>
@@ -192,6 +203,11 @@ const ListItem = styled.li`
   })}
 `
 
+const Link = styled.a`
+  color: inherit;
+  text-decoration: none;
+`
+
 const Right = styled.div`
   flex: 1;
   padding: 20px;
@@ -229,7 +245,7 @@ const Bottom = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid var(--text-color-tertiary); ;
+  border-top: 1px solid var(--text-color-tertiary);
 `
 
 const Copyright = styled.span`
