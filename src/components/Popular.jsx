@@ -18,7 +18,9 @@ function Popular() {
           démangeaisons et les sensations d'inconfort.
         </Description>
         <ButtonContainer>
-          <MuiButton text='En savoir plus' />
+          <Link href='product/6431344d0d667835112dff23'>
+            <MuiButton text='En savoir plus' />
+          </Link>
           <IconContainer>
             <img src={ElementIcon} alt='icône étoile' />
           </IconContainer>
@@ -103,6 +105,11 @@ const ButtonContainer = styled.div`
   button {
     font-size: 14px;
   }
+`
+
+const Link = styled.a`
+  color: inherit;
+  text-decoration: none;
 `
 
 const IconContainer = styled.div`
