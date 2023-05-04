@@ -7,6 +7,7 @@ import Box from '@mui/material/Box'
 import MuiInput from '../components/MuiInput'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
+import Alert from '@mui/material/Alert'
 import PersonIcon from '@mui/icons-material/Person'
 import { mobile } from '../responsive'
 import { useState } from 'react'
@@ -20,6 +21,7 @@ const initialValue = {
 function Register() {
   const [value, setValue] = useState(initialValue)
   const [error, setError] = useState({})
+  const [success, setSuccess] = useState(false)
   const dispatch = useDispatch()
   const { isFetching, ResetError } = useSelector((state) => state.user)
 
@@ -43,6 +45,7 @@ function Register() {
     e.preventDefault()
     if (validate()) {
       reset(dispatch, value)
+      setSuccess(true)
     }
   }
 
@@ -71,16 +74,19 @@ function Register() {
             >
               Réinitialiser
             </Button>
+            <NotificationContainer>
+              {isFetching && <CircularProgress color='success' />}
+              {ResetError ? (
+                <Alert severity='error'>Compte email inexistant !</Alert>
+              ) : (
+                ''
+              )}
+              {success && (
+                <Alert severity='success'>Vérifier votre boite mail</Alert>
+              )}
+            </NotificationContainer>
           </Box>
         </FormContainer>
-        <NotificationContainer>
-          {isFetching && <CircularProgress color='success' />}
-          {ResetError & !isFetching ? (
-            <ErrorMessage>Compte email inexistant</ErrorMessage>
-          ) : (
-            ''
-          )}
-        </NotificationContainer>
       </Container>
       <Footer />
     </>
@@ -110,7 +116,7 @@ const FormContainer = styled.div`
     gap: 20px;
 
     ${mobile({
-      gap: 40,
+      gap: 20,
       alignItems: 'center'
     })}
   }
@@ -123,13 +129,8 @@ const Title = styled.h1`
   color: #2e7d32;
 
   ${mobile({
+    fontSize: 20,
     textAlign: 'center'
   })}
 `
-const NotificationContainer = styled.div`
-  margin: 20px;
-`
-
-const ErrorMessage = styled.span`
-  color: #d32f2f;
-`
+const NotificationContainer = styled.div``
