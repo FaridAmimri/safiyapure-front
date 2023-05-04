@@ -64,12 +64,14 @@ function Intro() {
           {sliderItems.map((slide, index) => (
             <Slide key={index}>
               <Image src={slide.image} alt='huile cosmétique' />
-              <Sticker>
-                <Product>{slide.title}</Product>
-                <Price>
-                  {slide.price} € <EastIcon />
-                </Price>
-              </Sticker>
+              <Link href={slide.link}>
+                <Sticker>
+                  <Product>{slide.title}</Product>
+                  <Price>
+                    {slide.price} € <EastIcon />
+                  </Price>
+                </Sticker>
+              </Link>
             </Slide>
           ))}
         </Carousel>
@@ -216,6 +218,10 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`
+const Link = styled.a`
+  color: inherit;
+  text-decoration: none;
 `
 
 const Sticker = styled.div`
