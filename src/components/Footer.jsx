@@ -73,7 +73,9 @@ function Footer() {
           </ContactItem>
           <ContactItem>
             <MailIcon />
-            contact@safiyapurecom.fr
+            <Link href='mailto: contact@safiyapurecom.fr'>
+              contact@safiyapurecom.fr
+            </Link>
           </ContactItem>
           <Payment src='https://i.ibb.co/Qfvn4z6/payment.png' />
         </Right>
