@@ -7,12 +7,12 @@ import Box from '@mui/material/Box'
 import MuiInput from '../components/MuiInput'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
+import Alert from '@mui/material/Alert'
 import LockIcon from '@mui/icons-material/Lock'
 import { mobile, tablet } from '../responsive'
 import { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../redux/apiCalls'
-import { useNavigate } from 'react-router-dom'
 
 const initialValues = {
   email: '',
@@ -25,7 +25,6 @@ function Login() {
   const [errors, setErrors] = useState({})
   const dispatch = useDispatch()
   const { isFetching, loginError } = useSelector((state) => state.user)
-  const navigate = useNavigate()
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -49,7 +48,6 @@ function Login() {
     e.preventDefault()
     if (validate()) {
       login(dispatch, values)
-      navigate('/')
     }
   }
 
@@ -68,7 +66,7 @@ function Login() {
               onChange={handleInputChange}
             />
             <MuiInput
-              label='Password'
+              label='Mot de passe'
               name='password'
               type='password'
               value={values.password}
@@ -87,13 +85,13 @@ function Login() {
             >
               Connexion
             </Button>
-            <Link href='/password'>Mot de passe oublié ?</Link>
+            {/* <Link href='/password'>Mot de passe oublié ?</Link> */}
           </Box>
         </FormContainer>
         <ErrorContainer>
           {isFetching && <CircularProgress color='success' />}
           {loginError & !isFetching ? (
-            <ErrorMessage>Email ou mot de passe incorrect</ErrorMessage>
+            <Alert severity='error'>Email ou mot de passe incorrect</Alert>
           ) : (
             ''
           )}
@@ -132,6 +130,7 @@ const Title = styled.h1`
   color: #2e7d32;
 
   ${mobile({
+    fontSize: 20,
     textAlign: 'center'
   })}
 `
@@ -155,13 +154,12 @@ const FormContainer = styled.div`
   }
 `
 
-const Link = styled.a`
-  margin: 5px 0;
-  font-size: 15px;
-  text-decoration: underline;
-  cursor: pointer;
-  color: inherit;
-`
+// const Link = styled.a`
+//   font-size: 15px;
+//   text-decoration: underline;
+//   cursor: pointer;
+//   color: inherit;
+// `
 
 const ErrorContainer = styled.div`
   width: 300px;
@@ -171,8 +169,4 @@ const ErrorContainer = styled.div`
     display: 'flex',
     justifyContent: 'center'
   })}
-`
-
-const ErrorMessage = styled.span`
-  color: #d32f2f;
 `
