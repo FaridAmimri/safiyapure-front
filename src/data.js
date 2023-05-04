@@ -1,20 +1,25 @@
 /** @format */
 
+const BASE_URL = 'http://localhost:3000/'
+
 export const sliderItems = [
   {
     image: 'assets/slides/slide1.jpg',
+    link: BASE_URL + 'product/64313d580d667835112dff27',
     title: 'Huile Stimulante',
-    price: 3.19
+    price: 3.38
   },
   {
     image: 'assets/slides/slide2.jpg',
-    title: 'Huile Adoucissante',
-    price: 3.49
+    link: BASE_URL + 'product/64313cf00d667835112dff25',
+    title: 'Huile Purifiante',
+    price: 3.85
   },
   {
     image: 'assets/slides/slide3.jpg',
+    link: BASE_URL + 'product/64313f7c0d667835112dff2b',
     title: 'Huile Hydratante',
-    price: 5.89
+    price: 6.31
   }
 ]
 
