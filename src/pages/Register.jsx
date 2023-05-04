@@ -9,12 +9,12 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
+import Alert from '@mui/material/Alert'
 import PersonIcon from '@mui/icons-material/Person'
 import { mobile } from '../responsive'
 import { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { register } from '../redux/apiCalls'
-import { useNavigate } from 'react-router-dom'
 
 const initialValues = {
   username: '',
@@ -28,8 +28,9 @@ function Register() {
   const [acceptTnC, setAcceptTnC] = useState(true)
   const [errors, setErrors] = useState({})
   const dispatch = useDispatch()
-  const { isFetching, RegisterError } = useSelector((state) => state.user)
-  const navigate = useNavigate()
+  const { currentUser, isFetching, RegisterError } = useSelector(
+    (state) => state.user
+  )
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -61,7 +62,6 @@ function Register() {
     e.preventDefault()
     if (validate()) {
       register(dispatch, values)
-      navigate('/')
     }
   }
 
@@ -107,7 +107,11 @@ function Register() {
                 }
                 label="J'accepte les termes et conditions d'utilisation"
               />
-              {!acceptTnC && <ErrorMessage>{errors.acceptTnC}</ErrorMessage>}
+              {!acceptTnC && (
+                <Alert severity='error'>
+                  Veuillez accepter les conditions du contrat
+                </Alert>
+              )}
               <Button
                 className='button'
                 variant='contained'
@@ -124,10 +128,15 @@ function Register() {
         </FormContainer>
         <ErrorContainer>
           {isFetching && <CircularProgress color='success' />}
-          {RegisterError & !isFetching ? (
-            <ErrorMessage>Nom ou Email déjà associé à un compte</ErrorMessage>
+          {RegisterError ? (
+            <Alert severity='error'>
+              Nom ou Email déjà associé à un compte
+            </Alert>
           ) : (
             ''
+          )}
+          {currentUser && (
+            <Alert severity='error'>Votre comte a bien été crée</Alert>
           )}
         </ErrorContainer>
       </Container>
@@ -206,9 +215,4 @@ const ErrorContainer = styled.div`
     display: 'flex',
     justifyContent: 'center'
   })}
-`
-
-const ErrorMessage = styled.span`
-  color: #d32f2f;
-  margin-bottom: 20px;
 `
