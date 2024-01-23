@@ -191,7 +191,7 @@ const RightArrow = styled.div`
 
 const Carousel = styled.div`
   display: flex;
-  transform: translateX(${(props) => props.currentSlide * -60}vw);
+  transform: translateX(${(props) => props.currentSlide * -65}vw);
   transition: all 1.5s ease-in-out;
 `
 
@@ -241,7 +241,7 @@ const Sticker = styled.div`
   cursor: pointer;
 
   ${mobile({
-    width: 150,
+    width: 110,
     height: 50,
     top: 100
   })}

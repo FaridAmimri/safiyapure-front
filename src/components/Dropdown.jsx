@@ -35,7 +35,8 @@ const Container = styled.div`
   margin: 20px;
 
   ${mobile({
-    width: '100%'
+    width: '100%',
+    margin: '0 0 30px 0'
   })}
 
   ${tablet({

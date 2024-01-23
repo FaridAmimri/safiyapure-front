@@ -154,7 +154,7 @@ const Container = styled.div`
 
   .link {
     text-decoration: none;
-    ${mobile({ textAlign: 'center' })};
+    ${mobile({ textAlign: 'center', margin: 30 })};
   }
 `
 
@@ -230,7 +230,6 @@ const MenuList = styled.ul`
   align-items: center;
   transition: all 1s ease;
   display: flex;
-  justify-content: space-around;
   z-index: 999;
 `
 

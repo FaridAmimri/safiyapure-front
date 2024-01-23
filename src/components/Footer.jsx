@@ -65,7 +65,7 @@ function Footer() {
           <Title>Contact</Title>
           <ContactItem>
             <LocationOnIcon />
-            50 chemin de certaud, 39300 Champagnole
+            Champagnole, France
           </ContactItem>
           <ContactItem>
             <PhoneIcon />
@@ -114,6 +114,12 @@ const Left = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+
+  ${mobile({
+    padding: 0,
+    marginTop: 30,
+    marginBottom: 30
+  })}
 `
 
 const Description = styled.p`
@@ -155,6 +161,11 @@ const SocialIcon = styled.div`
 const Center = styled.div`
   flex: 1;
   padding: 20px;
+
+  ${mobile({
+    padding: 0,
+    marginBottom: 30
+  })}
 `
 
 const Wrapper = styled.div`
@@ -213,6 +224,11 @@ const Link = styled.a`
 const Right = styled.div`
   flex: 1;
   padding: 20px;
+
+  ${mobile({
+    padding: 0,
+    marginBottom: 30
+  })}
 
   ${tablet({
     display: 'flex',
